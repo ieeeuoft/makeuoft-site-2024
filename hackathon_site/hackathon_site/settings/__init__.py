@@ -43,12 +43,24 @@ if DEBUG:
     EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
     HSS_URL = "http://localhost:3000/"
 else:
-    # NOTE: If you aren't ieee uoft, put your websites here
-    ALLOWED_HOSTS = ["ieee.utoronto.ca"]
-    CORS_ORIGIN_REGEX_WHITELIST = [
-        r"^https://ieee\.utoronto.ca:?\d*$",
+    ALLOWED_HOSTS = [
+        "makeuoft.ca",
+        "www.makeuoft.ca",
+        "hardware.makeuoft.ca",
+        "www.hardware.makeuoft.ca",
     ]
-    HSS_URL = "https://hardware.newhacks.ca/"
+    HSS_URL = "https://hardware.makeuoft.ca/"
+    CORS_ORIGIN_REGEX_WHITELIST = [
+        r"^https://(?:www\.)?makeuoft\.ca",
+        r"^https://(?:www\.)?\w+\.makeuoft\.ca",
+    ]
+    CSRF_COOKIE_DOMAIN = ".makeuoft.ca"
+    CSRF_TRUSTED_ORIGINS = [
+        "makeuoft.ca",
+        "www.makeuoft.ca",
+        "hardware.makeuoft.ca",
+        "www.hardware.makeuoft.ca",
+    ]
 
 CORS_ALLOW_CREDENTIALS = True
 
@@ -289,10 +301,10 @@ LOGGING = {
 }
 
 # Event specific settings
-HACKATHON_NAME = "CoolHacks"
+HACKATHON_NAME = "MakeUofT"
 DEFAULT_FROM_EMAIL = "webmaster@localhost"
 CONTACT_EMAIL = DEFAULT_FROM_EMAIL
-HSS_ADMIN_EMAIL = "hardware@newhacks.ca"
+HSS_ADMIN_EMAIL = "hardware@makeuoft.ca"
 
 REGISTRATION_OPEN_DATE = datetime(2020, 9, 1, tzinfo=TZ_INFO)
 REGISTRATION_CLOSE_DATE = datetime(2023, 9, 30, tzinfo=TZ_INFO)
