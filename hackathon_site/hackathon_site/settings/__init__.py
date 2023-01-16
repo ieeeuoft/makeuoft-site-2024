@@ -43,12 +43,24 @@ if DEBUG:
     EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
     HSS_URL = "http://localhost:3000/"
 else:
-    # NOTE: If you aren't ieee uoft, put your websites here
-    ALLOWED_HOSTS = ["ieee.utoronto.ca"]
-    CORS_ORIGIN_REGEX_WHITELIST = [
-        r"^https://ieee\.utoronto.ca:?\d*$",
+    ALLOWED_HOSTS = [
+        "makeuoft.ca",
+        "www.makeuoft.ca",
+        "hardware.makeuoft.ca",
+        "www.hardware.makeuoft.ca",
     ]
-    HSS_URL = "https://hardware.newhacks.ca/"
+    HSS_URL = "https://hardware.makeuoft.ca/"
+    CORS_ORIGIN_REGEX_WHITELIST = [
+        r"^https://(?:www\.)?makeuoft\.ca",
+        r"^https://(?:www\.)?\w+\.makeuoft\.ca",
+    ]
+    CSRF_COOKIE_DOMAIN = ".makeuoft.ca"
+    CSRF_TRUSTED_ORIGINS = [
+        "makeuoft.ca",
+        "www.makeuoft.ca",
+        "hardware.makeuoft.ca",
+        "www.hardware.makeuoft.ca",
+    ]
 
 CORS_ALLOW_CREDENTIALS = True
 
@@ -289,20 +301,20 @@ LOGGING = {
 }
 
 # Event specific settings
-HACKATHON_NAME = "CoolHacks"
+HACKATHON_NAME = "MakeUofT"
 DEFAULT_FROM_EMAIL = "webmaster@localhost"
 CONTACT_EMAIL = DEFAULT_FROM_EMAIL
-HSS_ADMIN_EMAIL = "hardware@newhacks.ca"
+HSS_ADMIN_EMAIL = "hardware@makeuoft.ca"
 
-REGISTRATION_OPEN_DATE = datetime(2020, 9, 1, tzinfo=TZ_INFO)
-REGISTRATION_CLOSE_DATE = datetime(2023, 9, 30, tzinfo=TZ_INFO)
-EVENT_START_DATE = datetime(2023, 10, 10, 10, 0, 0, tzinfo=TZ_INFO)
-EVENT_END_DATE = datetime(2023, 10, 11, 17, 0, 0, tzinfo=TZ_INFO)
-HARDWARE_SIGN_OUT_START_DATE = datetime(2020, 9, 1, tzinfo=TZ_INFO)
-HARDWARE_SIGN_OUT_END_DATE = datetime(2023, 9, 30, tzinfo=TZ_INFO)
+REGISTRATION_OPEN_DATE = datetime(2023, 1, 16, 12, 0, 0, tzinfo=TZ_INFO)
+REGISTRATION_CLOSE_DATE = datetime(2023, 2, 4, 23, 59, 0, tzinfo=TZ_INFO)
+EVENT_START_DATE = datetime(2023, 2, 18, 10, 0, 0, tzinfo=TZ_INFO)
+EVENT_END_DATE = datetime(2023, 2, 19, 17, 0, 0, tzinfo=TZ_INFO)
+HARDWARE_SIGN_OUT_START_DATE = datetime(2023, 2, 4, 0, 0, 0, tzinfo=TZ_INFO)
+HARDWARE_SIGN_OUT_END_DATE = datetime(2023, 2, 19, 17, 00, 0, tzinfo=TZ_INFO)
 
 # Registration user requirements
-MINIMUM_AGE = 14
+MINIMUM_AGE = 18
 
 # Registration settings
 ACCOUNT_ACTIVATION_DAYS = 7
