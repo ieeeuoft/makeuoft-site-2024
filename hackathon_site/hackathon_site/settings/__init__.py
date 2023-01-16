@@ -302,8 +302,8 @@ LOGGING = {
 
 # Event specific settings
 HACKATHON_NAME = "MakeUofT"
-DEFAULT_FROM_EMAIL = "webmaster@localhost"
-CONTACT_EMAIL = DEFAULT_FROM_EMAIL
+DEFAULT_FROM_EMAIL = "hello@makeuoft.ca"
+CONTACT_EMAIL = "hello@makeuoft.ca"
 HSS_ADMIN_EMAIL = "hardware@makeuoft.ca"
 
 REGISTRATION_OPEN_DATE = datetime(2023, 1, 16, 12, 0, 0, tzinfo=TZ_INFO)
@@ -337,7 +337,7 @@ PARTICIPANT_PACKAGE_LINK = "#"
 
 # Note this is in the form (chat_room_name, chat_room_link)
 # Chat room name is such as the following: Slack, Discord
-CHAT_ROOM = ("Slack", "https://slack.com")
+CHAT_ROOM = ("Discord", "#")
 
 # Enable/Disable certain Features
 TEAMS = True
