@@ -6,13 +6,15 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('registration', '0005_auto_20230115_2134'),
+        ("registration", "0005_auto_20230115_2134"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='application',
-            name='referral_source',
-            field=models.TextField(help_text='How did you hear about MakeUofT?', max_length=1000),
+            model_name="application",
+            name="referral_source",
+            field=models.TextField(
+                help_text="How did you hear about MakeUofT?", max_length=1000
+            ),
         ),
     ]
