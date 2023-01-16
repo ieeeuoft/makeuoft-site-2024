@@ -1,7 +1,7 @@
 {% extends "event/base.html" %}
 
-{% macro render_field(field, show_help_text=False, show_label=True, show_help_text_as_label=False, size="s12") %}
-    <div class="input-field row col {{ size }}">
+{% macro render_field(field, show_help_text=False, show_label=True, show_help_text_as_label=False, size="s12", id="") %}
+    <div class="input-field row col {{ size }}" id="{{ id }}">
         {{ field }}
         {% if show_label %}
             {% if show_help_text_as_label %}

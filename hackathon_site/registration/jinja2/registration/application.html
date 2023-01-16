@@ -42,9 +42,7 @@
     {{ render_field(form.ethnicity, size="s12 m6 select2-wrapper") }}
     {{ render_field(form.tshirt_size, size="s12 m6 select2-wrapper") }}
     {{ render_field(form.dietary_restrictions, size="s12 m6 select2-wrapper") }}
-    {% if form.dietary_restrictions.value == "other but specify" or form.dietary_restrictions.value == "Other but Specify" %}
-        {{ render_field(form.custom_choice, size="s12 m6") }}
-    {% endif %}
+    {{ render_field(form.custom_choice, size="s12 m6", id="dietaryOther") }}
     {{ render_field(form.city, size="s12 m6", show_help_text_as_label=True) }}
     {{ render_field(form.country, size="s12 m6", show_help_text_as_label=True) }}
 
@@ -123,6 +121,15 @@
             $(document).on('focus', '.select2-selection.select2-selection--single', function () {
                 $(this).closest(".select2-container").siblings('select:enabled').select2('open');
             });
+
+            $("#dietaryOther").hide();
+            $("#id_dietary_restrictions").change((e) => {
+                if(e.target.value === "other but specify") {
+                    $("#dietaryOther").show();
+                } else {
+                    $("#dietaryOther").hide();
+                }
+            })
         });
 
         $.get("https://raw.githubusercontent.com/MLH/mlh-policies/master/schools.csv", (data) => {
