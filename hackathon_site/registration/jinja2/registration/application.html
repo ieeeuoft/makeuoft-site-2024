@@ -67,19 +67,19 @@
     {{ render_field(form.what_technical_experience, show_help_text_as_label=True) }}
     {{ render_field(form.referral_source, show_help_text_as_label=True) }}
     {{ render_checkbox_field(form.resume_sharing) }}
-    {% for field in form %}
-        {% if field.field.widget.__class__.__name__ == "Textarea" %}
-            {{ render_field(field, size="s12", show_help_text_as_label=True) }}
-        {% elif field.field.widget.input_type == "select" %}
-            {{ render_field(field, size="s12 select2-wrapper", show_help_text_as_label=True) }}
-        {% elif field.field.widget.input_type == "file" %}
-            {{ render_field(field, size="s12", show_label=False) }}
-        {% elif field.field.widget.input_type == "checkbox" %}
-            {{ render_checkbox_field(field, size="s12") }}
-        {% else %}
-            {{ render_field(field, size="s12") }}
-        {% endif %}
-    {% endfor %}
+{#    {% for field in form %}#}
+{#        {% if field.field.widget.__class__.__name__ == "Textarea" %}#}
+{#            {{ render_field(field, size="s12", show_help_text_as_label=True) }}#}
+{#        {% elif field.field.widget.input_type == "select" %}#}
+{#            {{ render_field(field, size="s12 select2-wrapper", show_help_text_as_label=True) }}#}
+{#        {% elif field.field.widget.input_type == "file" %}#}
+{#            {{ render_field(field, size="s12", show_label=False) }}#}
+{#        {% elif field.field.widget.input_type == "checkbox" %}#}
+{#            {{ render_checkbox_field(field, size="s12") }}#}
+{#        {% else %}#}
+{#            {{ render_field(field, size="s12") }}#}
+{#        {% endif %}#}
+{#    {% endfor %}#}
 {% endblock %}
 
 {% block form_button %}

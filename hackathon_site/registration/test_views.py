@@ -182,6 +182,7 @@ class ApplicationViewTestCase(SetupUserMixin, TestCase):
             "study_level": "other",
             "graduation_year": 2023,
             "program": "Engineering",
+            "dietary_restrictions": "Halal",
             "how_many_hackathons": 4,
             "what_hackathon_experience": "there",
             "why_participate": "foo",
