@@ -96,6 +96,7 @@ class ApplicationForm(forms.ModelForm):
             "phone_number",
             "tshirt_size",
             "dietary_restrictions",
+            "custom_choice",
             "school",
             "study_level",
             "program",
@@ -161,6 +162,12 @@ class ApplicationForm(forms.ModelForm):
                 code="user_is_too_young_to_participate",
             )
         return self.cleaned_data["birthday"]
+
+    def clean_custom_choice(self):
+        custom_choice = self.cleaned_data["custom_choice"]
+        if custom_choice == "":
+            raise forms.ValidationError("Please specify your dietary restriction")
+        return custom_choice
 
     def save(self, commit=True):
         self.instance = super().save(commit=False)

@@ -77,10 +77,10 @@ class Application(models.Model):
 
     DIETARY_RESTRICTIONS_CHOICES = [
         (None, ""),
-        ("Halal", "halal"),
-        ("Vegetarian", "vegetarian"),
-        ("Gluten-Free", "gluten-free"),
-        ("Other but Specify", "other but specify"),
+        ("halal", "Halal"),
+        ("vegetarian", "Vegetarian"),
+        ("gluten-Free", "Gluten-free"),
+        ("other but specify", "Other but Specify"),
     ]
 
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=False)
@@ -92,8 +92,12 @@ class Application(models.Model):
     birthday = models.DateField(null=False)
     gender = models.CharField(max_length=50, choices=GENDER_CHOICES, null=False)
     ethnicity = models.CharField(max_length=50, choices=ETHNICITY_CHOICES, null=False)
-    country = models.CharField(max_length=255, null=True, blank=True)
-    city = models.CharField(max_length=255, null=True, blank=True)
+    country = models.CharField(
+        max_length=255, null=True, blank=True, help_text="Country (Optional)"
+    )
+    city = models.CharField(
+        max_length=255, null=True, blank=True, help_text="City (Optional)"
+    )
     phone_number = models.CharField(
         max_length=20,
         null=False,
@@ -110,6 +114,7 @@ class Application(models.Model):
     dietary_restrictions = models.CharField(
         max_length=50, choices=DIETARY_RESTRICTIONS_CHOICES, null=False
     )
+    custom_choice = models.CharField(max_length=50, blank=True)
     school = models.CharField(max_length=255, null=False)
     study_level = models.CharField(
         max_length=50, choices=STUDY_LEVEL_CHOICES, null=False
@@ -145,18 +150,18 @@ class Application(models.Model):
         null=False,
         help_text="If you’ve been to a hackathon, briefly tell "
         "us your experience. If not, describe what you"
-        " expect to see and experience. (200 words "
+        " expect to see and experience. (1000 chars. "
         "max)",
         max_length=1000,
     )
     why_participate = models.TextField(
         null=False,
-        help_text="Why do you want to participate in MakeUofT? (200 words max)",
+        help_text="Why do you want to participate in MakeUofT? (1000 chars. max)",
         max_length=1000,
     )
     what_technical_experience = models.TextField(
         null=False,
-        help_text="What is your technical experience with software and hardware? (200 words max)",
+        help_text="What is your technical experience with software and hardware? (1000 chars. max)",
         max_length=1000,
     )
     referral_source = models.TextField(
@@ -165,15 +170,23 @@ class Application(models.Model):
         max_length=1000,
     )
     resume_sharing = models.BooleanField(
-        help_text="I consent to IEEE UofT sharing my resume with event sponsors.",
+        help_text="I consent to IEEE UofT sharing my resume with event sponsors. (Optional)",
         blank=True,
-        null=True,
+        null=False,
         default=False,
     )
 
     rsvp = models.BooleanField(null=True)
     created_at = models.DateTimeField(auto_now_add=True, null=False)
     updated_at = models.DateTimeField(auto_now=True, null=False)
+
+    def save(self, *args, **kwargs):
+        if (
+            self.dietary_restrictions == "other but specify"
+            or self.dietary_restrictions == "Other but Specify"
+        ):
+            self.dietary_restrictions = self.custom_choice
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return f"{self.user.first_name} {self.user.last_name}"
