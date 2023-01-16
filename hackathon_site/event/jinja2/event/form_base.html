@@ -45,6 +45,27 @@
     </div>
 {% endmacro %}
 
+{% macro render_radio_field(field, size="s12") %}
+    <div class="row col {{ size }}" style="padding-top: 0.5em; padding-bottom: 0.5em;">
+        {{ field.help_text }}
+        {% for radio in field %}
+            <p>
+                <label for="{{ radio.id_for_label }}">
+                    {{ radio.tag() }}
+                    <span>{{ radio.choice_label }}</span>
+                </label>
+            </p>
+        {% endfor %}
+        {% if field.errors %}
+            <span class="formFieldError col s12">
+            {% for error in field.errors %}
+                {{ error }}
+            {% endfor %}
+            </span>
+        {% endif %}
+    </div>
+{% endmacro %}
+
 {% block body %}
 <div class="backgroundColorFormBase">
     <div class="container">

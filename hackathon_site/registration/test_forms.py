@@ -84,18 +84,24 @@ class ApplicationFormTestCase(SetupUserMixin, TestCase):
     def setUp(self):
         super().setUp()
         self.data = {
-            "birthday": date(2000, 7, 7),
+            "birthday": date(2000, 1, 1),
             "gender": "no-answer",
             "ethnicity": "no-answer",
+            "city": "Toronto",
+            "country": "Canada",
             "phone_number": "1234567890",
+            "tshirt_size": "L",
+            "dietary_restrictions": "Halal",
             "school": "UofT",
             "study_level": "other",
-            "graduation_year": 2020,
-            "q1": "hi",
-            "q2": "there",
-            "q3": "foo",
-            "conduct_agree": True,
-            "data_agree": True,
+            "program": "Engineering",
+            "graduation_year": 2023,
+            "how_many_hackathons": 4,
+            "what_hackathon_experience": "there",
+            "why_participate": "foo",
+            "what_technical_experience": "loo",
+            "referral_source": "my friend",
+            "resume_sharing": True,
         }
         self.files = self._build_files()
 
@@ -125,7 +131,10 @@ class ApplicationFormTestCase(SetupUserMixin, TestCase):
         return ApplicationForm(user=user, data=data, files=files)
 
     def test_fields_are_required(self):
+        optional_fields = {"country", "city", "resume_sharing", "rsvp"}
         for field in self.data:
+            if field in optional_fields:
+                continue
             bad_data = self.data.copy()
             del bad_data[field]
 

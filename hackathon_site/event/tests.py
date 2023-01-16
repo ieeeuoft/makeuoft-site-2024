@@ -876,12 +876,14 @@ class CreateProfileSerializerTestCase(TestCase):
             "school": "UofT",
             "study_level": "other",
             "graduation_year": 2020,
-            "q1": "hi",
-            "q2": "there",
-            "q3": "foo",
-            "conduct_agree": True,
-            "data_agree": True,
-            "resume": "uploads/resumes/my_resume.pdf",
+            "program": "Engineering",
+            "how_many_hackathons": 4,
+            "what_hackathon_experience": "there",
+            "why_participate": "foo",
+            "what_technical_experience": "loo",
+            "referral_source": "my friend",
+            "resume_sharing": True,
+            "rsvp": True
         }
         self.application = Application.objects.create(
             user=self.user, team=self.team, **application_data
