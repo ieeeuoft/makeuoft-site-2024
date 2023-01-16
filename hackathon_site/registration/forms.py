@@ -106,7 +106,7 @@ class ApplicationForm(forms.ModelForm):
             "what_technical_experience",
             "referral_source",
             "resume",
-            "resume_sharing"
+            "resume_sharing",
         ]
         widgets = {
             "birthday": forms.DateInput(format="%Y-%m-%d", attrs={"type": "date"}),
@@ -125,7 +125,7 @@ class ApplicationForm(forms.ModelForm):
                 attrs={"class": "materialize-textarea", "data-length": 1000,}
             ),
             "referral_source": forms.Textarea(
-                attrs={"class": "materialize-textarea", "data-length": 1000, }
+                attrs={"class": "materialize-textarea", "data-length": 1000,}
             ),
             "resume": MaterialFileInput(attrs={"accept": ".pdf"}),
             "phone_number": forms.TextInput(attrs={"placeholder": "+1 (123) 456-7890"}),
@@ -136,7 +136,6 @@ class ApplicationForm(forms.ModelForm):
         self.user = kwargs.pop("user")
         super().__init__(*args, **kwargs)
         self.label_suffix = ""
-
 
     def clean(self):
         if not is_registration_open():

@@ -141,12 +141,24 @@ class Application(models.Model):
         choices=HACKATHON_NUMBER_CHOICES,
         max_length=100,
     )
-    what_hackathon_experience = models.TextField(null=False, help_text="If you’ve been to a hackathon, briefly tell "
-                                                                       "us your experience. If not, describe what you"
-                                                                       " expect to see and experience. (200 words "
-                                                                       "max)", max_length=1000)
-    why_participate = models.TextField(null=False, help_text="Why do you want to participate in MakeUofT? (200 words max)", max_length=1000)
-    what_technical_experience = models.TextField(null=False, help_text="What is your technical experience with software and hardware? (200 words max)", max_length=1000)
+    what_hackathon_experience = models.TextField(
+        null=False,
+        help_text="If you’ve been to a hackathon, briefly tell "
+        "us your experience. If not, describe what you"
+        " expect to see and experience. (200 words "
+        "max)",
+        max_length=1000,
+    )
+    why_participate = models.TextField(
+        null=False,
+        help_text="Why do you want to participate in MakeUofT? (200 words max)",
+        max_length=1000,
+    )
+    what_technical_experience = models.TextField(
+        null=False,
+        help_text="What is your technical experience with software and hardware? (200 words max)",
+        max_length=1000,
+    )
     referral_source = models.TextField(
         null=False,
         help_text=f"How did you hear about {settings.HACKATHON_NAME}?",

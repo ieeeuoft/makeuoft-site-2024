@@ -883,7 +883,7 @@ class CreateProfileSerializerTestCase(TestCase):
             "what_technical_experience": "loo",
             "referral_source": "my friend",
             "resume_sharing": True,
-            "rsvp": True
+            "rsvp": True,
         }
         self.application = Application.objects.create(
             user=self.user, team=self.team, **application_data
