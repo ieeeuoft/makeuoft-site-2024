@@ -91,7 +91,8 @@ class ApplicationFormTestCase(SetupUserMixin, TestCase):
             "country": "Canada",
             "phone_number": "1234567890",
             "tshirt_size": "L",
-            "dietary_restrictions": "Halal",
+            "dietary_restrictions": "halal",
+            "specific_dietary_requirement": "halal",
             "school": "UofT",
             "study_level": "other",
             "program": "Engineering",
@@ -131,7 +132,7 @@ class ApplicationFormTestCase(SetupUserMixin, TestCase):
         return ApplicationForm(user=user, data=data, files=files)
 
     def test_fields_are_required(self):
-        optional_fields = {"country", "city", "resume_sharing", "rsvp"}
+        optional_fields = {"country", "city", "resume_sharing", "rsvp", "specific_dietary_requirement"}
         for field in self.data:
             if field in optional_fields:
                 continue

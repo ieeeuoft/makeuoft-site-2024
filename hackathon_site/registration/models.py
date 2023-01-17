@@ -114,7 +114,7 @@ class Application(models.Model):
     dietary_restrictions = models.CharField(
         max_length=50, choices=DIETARY_RESTRICTIONS_CHOICES, null=False
     )
-    custom_choice = models.CharField(max_length=50, blank=True)
+    specific_dietary_requirement = models.CharField(max_length=50, blank=True)
     school = models.CharField(max_length=255, null=False)
     study_level = models.CharField(
         max_length=50, choices=STUDY_LEVEL_CHOICES, null=False
@@ -185,7 +185,7 @@ class Application(models.Model):
             self.dietary_restrictions == "other but specify"
             or self.dietary_restrictions == "Other but Specify"
         ):
-            self.dietary_restrictions = self.custom_choice
+            self.dietary_restrictions = self.specific_dietary_requirement
         super().save(*args, **kwargs)
 
     def __str__(self):

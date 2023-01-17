@@ -96,7 +96,7 @@ class ApplicationForm(forms.ModelForm):
             "phone_number",
             "tshirt_size",
             "dietary_restrictions",
-            "custom_choice",
+            "specific_dietary_requirement",
             "school",
             "study_level",
             "program",
@@ -143,13 +143,21 @@ class ApplicationForm(forms.ModelForm):
             raise forms.ValidationError(
                 _("Registration has closed."), code="registration_closed"
             )
-
         cleaned_data = super().clean()
         if hasattr(self.user, "application"):
             raise forms.ValidationError(
                 _("User has already submitted an application."), code="invalid"
             )
         return cleaned_data
+
+    def clean_dietary_restriction(self):
+        dietary_restriction = self.cleaned_data["dietary_restrictions"]
+        if dietary_restriction == "other but specify":
+            specific_dietary_requirement = self.cleaned_data["specific_dietary_requirement"]
+            if specific_dietary_requirement == "":
+                raise forms.ValidationError("Please specify your dietary restriction")
+        return dietary_restriction
+
 
     def clean_birthday(self):
         latest_birthday = (
@@ -163,11 +171,6 @@ class ApplicationForm(forms.ModelForm):
             )
         return self.cleaned_data["birthday"]
 
-    def clean_custom_choice(self):
-        custom_choice = self.cleaned_data["custom_choice"]
-        if custom_choice == "":
-            raise forms.ValidationError("Please specify your dietary restriction")
-        return custom_choice
 
     def save(self, commit=True):
         self.instance = super().save(commit=False)
