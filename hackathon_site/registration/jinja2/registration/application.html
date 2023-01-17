@@ -122,14 +122,20 @@
                 $(this).closest(".select2-container").siblings('select:enabled').select2('open');
             });
 
-            $("#dietaryOther").hide();
-            $("#id_dietary_restrictions").change((e) => {
-                if(e.target.value === "other but specify") {
-                    $("#dietaryOther").show();
-                } else {
+            $(document).ready(() => {
+                // check the initial value of the "id_dietary_restrictions" element
+                if ($("#id_dietary_restrictions").val() !== "other but specify") {
                     $("#dietaryOther").hide();
                 }
-            })
+
+                $("#id_dietary_restrictions").change((e) => {
+                    if (e.target.value === "other but specify") {
+                        $("#dietaryOther").show();
+                    } else {
+                        $("#dietaryOther").hide();
+                    }
+                });
+            });
         });
 
         $.get("https://raw.githubusercontent.com/MLH/mlh-policies/master/schools.csv", (data) => {

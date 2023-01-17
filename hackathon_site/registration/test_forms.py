@@ -92,7 +92,7 @@ class ApplicationFormTestCase(SetupUserMixin, TestCase):
             "phone_number": "1234567890",
             "tshirt_size": "L",
             "dietary_restrictions": "halal",
-            "specific_dietary_requirement": "halal",
+            "specific_dietary_requirement": "",
             "school": "UofT",
             "study_level": "other",
             "program": "Engineering",
@@ -137,6 +137,7 @@ class ApplicationFormTestCase(SetupUserMixin, TestCase):
             "city",
             "resume_sharing",
             "rsvp",
+            "dietary_restrictions",
             "specific_dietary_requirement",
         }
         for field in self.data:

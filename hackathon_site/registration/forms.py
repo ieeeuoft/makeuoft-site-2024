@@ -150,15 +150,14 @@ class ApplicationForm(forms.ModelForm):
             )
         return cleaned_data
 
-    def clean_dietary_restriction(self):
-        dietary_restriction = self.cleaned_data["dietary_restrictions"]
-        if dietary_restriction == "other but specify":
-            specific_dietary_requirement = self.cleaned_data[
-                "specific_dietary_requirement"
-            ]
-            if specific_dietary_requirement == "":
-                raise forms.ValidationError("Please specify your dietary restriction")
-        return dietary_restriction
+    def clean_specific_dietary_requirement(self):
+        if "dietary_restrictions" in self.cleaned_data:
+            dietary_restriction = self.cleaned_data["dietary_restrictions"]
+            if dietary_restriction == "other but specify":
+                specific_dietary_requirement = self.cleaned_data["specific_dietary_requirement"]
+                if specific_dietary_requirement == "":
+                    raise forms.ValidationError("Please specify your dietary restriction")
+        return self.cleaned_data["specific_dietary_requirement"]
 
     def clean_birthday(self):
         latest_birthday = (
