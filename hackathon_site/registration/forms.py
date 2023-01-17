@@ -153,11 +153,12 @@ class ApplicationForm(forms.ModelForm):
     def clean_dietary_restriction(self):
         dietary_restriction = self.cleaned_data["dietary_restrictions"]
         if dietary_restriction == "other but specify":
-            specific_dietary_requirement = self.cleaned_data["specific_dietary_requirement"]
+            specific_dietary_requirement = self.cleaned_data[
+                "specific_dietary_requirement"
+            ]
             if specific_dietary_requirement == "":
                 raise forms.ValidationError("Please specify your dietary restriction")
         return dietary_restriction
-
 
     def clean_birthday(self):
         latest_birthday = (
@@ -170,7 +171,6 @@ class ApplicationForm(forms.ModelForm):
                 code="user_is_too_young_to_participate",
             )
         return self.cleaned_data["birthday"]
-
 
     def save(self, commit=True):
         self.instance = super().save(commit=False)
