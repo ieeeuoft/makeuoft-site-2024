@@ -350,7 +350,7 @@ export const userSelector = createSelector(
 export const userTypeSelector = createSelector([userSelector], (user) =>
     user?.profile
         ? "participant"
-        : user?.groups.some((group) => group.name === adminGroup)
+        : user?.groups.length && user?.groups.some((group) => group.name === adminGroup)
         ? "admin"
         : "none"
 );
