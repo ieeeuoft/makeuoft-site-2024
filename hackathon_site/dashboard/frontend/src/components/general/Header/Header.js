@@ -23,7 +23,11 @@ const HackathonTitle = () => (
             alt="MakeUofT logo"
             data-testid="headerLogo"
         />
-        <Typography variant="h6" data-testid="hackathonName">
+        <Typography
+            variant="h6"
+            data-testid="hackathonName"
+            style={{ marginTop: 4, marginLeft: -20 }}
+        >
             {hackathonName}
         </Typography>
     </>

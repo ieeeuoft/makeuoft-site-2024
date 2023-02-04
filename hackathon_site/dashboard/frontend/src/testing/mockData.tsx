@@ -27,7 +27,7 @@ export const cardItems = [
         content: [
             {
                 name: "MakeUofT Main Site",
-                url: "https://www.facebook.com",
+                url: "https://makeuoft.ca/",
                 icon: <OpenInNew />,
             },
         ],
