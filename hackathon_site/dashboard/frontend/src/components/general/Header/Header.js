@@ -20,7 +20,7 @@ const HackathonTitle = () => (
     <>
         <Logo
             className={styles.headerLogoImg}
-            alt="Hackathon logo"
+            alt="MakeUofT logo"
             data-testid="headerLogo"
         />
         <Typography variant="h6" data-testid="hackathonName">
