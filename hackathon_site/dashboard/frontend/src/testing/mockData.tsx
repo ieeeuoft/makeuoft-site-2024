@@ -53,7 +53,7 @@ export const cardItems = [
             {
                 name: "Electronics Tutorials - GreatScott",
                 url: "https://www.youtube.com/user/greatscottlab",
-                icon: <GetApp />,
+                icon: <OpenInNew />,
             },
             {
                 name: "Learn Arduino Programming",
