@@ -876,14 +876,12 @@ class CreateProfileSerializerTestCase(TestCase):
             "school": "UofT",
             "study_level": "other",
             "graduation_year": 2020,
-            "program": "Engineering",
-            "how_many_hackathons": 4,
-            "what_hackathon_experience": "there",
-            "why_participate": "foo",
-            "what_technical_experience": "loo",
-            "referral_source": "my friend",
-            "resume_sharing": True,
-            "rsvp": True,
+            "q1": "hi",
+            "q2": "there",
+            "q3": "foo",
+            "conduct_agree": True,
+            "data_agree": True,
+            "resume": "uploads/resumes/my_resume.pdf",
         }
         self.application = Application.objects.create(
             user=self.user, team=self.team, **application_data
@@ -986,6 +984,20 @@ class UserReviewStatusSerializerTestCase(SetupUserMixin, TestCase):
         self.assertEqual(user_expected, user_serialized)
 
     def test_serializer_no_review(self):
+        user_serialized = UserReviewStatusSerializer(self.user).data
+
+        user_expected = {
+            "id": self.user.id,
+            "first_name": self.user.first_name,
+            "last_name": self.user.last_name,
+            "email": self.user.email,
+            "review_status": "None",
+        }
+
+        self.assertEqual(user_expected, user_serialized)
+
+    def test_serializer_review_but_not_sent(self):
+        self._review(application=self.application, decision_sent_date=None)
         user_serialized = UserReviewStatusSerializer(self.user).data
 
         user_expected = {
