@@ -215,9 +215,10 @@ describe("<Acknowledgement />", () => {
                 createProfileAPI,
                 createProfileRequest
             );
+
             expect(
                 getByText(
-                    `${mockUserWithoutProfile.first_name}, you're ready to get started. We've placed you in Team ${createProfileAPIResponse.data.team} but you can leave and join another team anytime.`
+                    `🎉${mockUserWithoutProfile.first_name}, you're ready to get started. <br /> We've placed you in Team <strong>${createProfileAPIResponse.data.team}</strong> <br /> but you can leave and join another team anytime.`
                 )
             ).toBeInTheDocument();
             fireEvent.click(getByText("Let's Go!"));
