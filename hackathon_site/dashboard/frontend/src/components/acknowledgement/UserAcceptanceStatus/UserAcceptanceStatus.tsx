@@ -95,7 +95,7 @@ export const UserAcceptanceMessage = ({
             <Typography variant="h1">{ACCEPTANCE_MESSAGES[status].title}</Typography>
             <Grid container justifyContent="center">
                 <Grid item lg={4} md={4} sm={6} xs={12}>
-                    {status != "NotStarted" && (
+                    {status !== "NotStarted" && (
                         <AlertBox
                             title={`Acceptance Status: ${status}`}
                             type={ACCEPTANCE_MESSAGES[status].alertColor}

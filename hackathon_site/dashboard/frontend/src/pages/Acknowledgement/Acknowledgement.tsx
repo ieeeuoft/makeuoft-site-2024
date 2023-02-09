@@ -49,8 +49,6 @@ const Acknowledgement = () => {
 
     useEffect(() => {
         const today = new Date();
-
-        console.log(hardwareSignOutStartDate);
         if (hardwareSignOutStartDate > today) {
             setSignoutNotStarted(true);
             push("/404");
