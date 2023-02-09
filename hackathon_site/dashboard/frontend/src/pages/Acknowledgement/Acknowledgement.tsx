@@ -123,16 +123,15 @@ const SuccessMessage = () => {
             <Grid item lg={6} xs={12}>
                 <Card style={{ padding: "15px 5px" }}>
                     <Typography
-                        style={{ fontSize: "25px", padding: "20px" }}
+                        style={{ fontSize: "25px", padding: "15px" }}
                         align="center"
                     >
-                        {`${user?.first_name
-                            .charAt(0)
-                            .toUpperCase()}${user?.first_name.substring(
-                            1
-                        )}, you're ready to get started. We've placed you in Team ${
-                            profile?.team
-                        } but you can leave and join another team anytime.`}
+                        🎉 {user?.first_name.charAt(0).toUpperCase()}
+                        {user?.first_name.substring(1)}, you're ready to get started.
+                        <br />
+                        We've placed you in Team <strong>{profile?.team}</strong>
+                        <br />
+                        You can leave and join another team anytime.
                     </Typography>
                     <Box
                         style={{
