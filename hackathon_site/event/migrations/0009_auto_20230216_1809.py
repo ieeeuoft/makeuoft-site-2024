@@ -6,33 +6,33 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('event', '0008_useractivity'),
+        ("event", "0008_useractivity"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='useractivity',
-            name='breakfast2',
+            model_name="useractivity",
+            name="breakfast2",
             field=models.DateTimeField(blank=True, null=True),
         ),
         migrations.AlterField(
-            model_name='useractivity',
-            name='dinner1',
+            model_name="useractivity",
+            name="dinner1",
             field=models.DateTimeField(blank=True, null=True),
         ),
         migrations.AlterField(
-            model_name='useractivity',
-            name='lunch1',
+            model_name="useractivity",
+            name="lunch1",
             field=models.DateTimeField(blank=True, null=True),
         ),
         migrations.AlterField(
-            model_name='useractivity',
-            name='lunch2',
+            model_name="useractivity",
+            name="lunch2",
             field=models.DateTimeField(blank=True, null=True),
         ),
         migrations.AlterField(
-            model_name='useractivity',
-            name='sign_in',
+            model_name="useractivity",
+            name="sign_in",
             field=models.DateTimeField(blank=True, null=True),
         ),
     ]

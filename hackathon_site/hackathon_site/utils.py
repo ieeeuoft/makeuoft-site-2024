@@ -33,7 +33,7 @@ def is_hackathon_happening():
     return settings.EVENT_START_DATE <= now < settings.EVENT_END_DATE
 
 
-def get_curr_sign_in_time(use_description=False,return_exception=False):
+def get_curr_sign_in_time(use_description=False, return_exception=False):
     now = datetime.now().replace(tzinfo=settings.TZ_INFO)
     for event in settings.SIGN_IN_TIMES:
         start_interval = event["time"] - relativedelta(hours=1)
