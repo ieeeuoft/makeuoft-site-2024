@@ -58,10 +58,13 @@
                                     </td>
                                 </tr>
                             </table>
-                            <button class="btn-large waves-effect waves-light colorBtn" style="margin-top: 15px"
-                                    type="submit" id="signInButton">
-                                Sign-In
-                            </button>
+                            {% if get_curr_sign_in_time() %}
+                                <button
+                                    class="btn-large waves-effect waves-light colorBtn" style="margin-top: 15px"
+                                        type="submit" id="signInButton">
+                                    Sign-In
+                                </button>
+                            {% endif %}
                         </form>
                     </div>
                 {% endif %}
@@ -75,7 +78,7 @@
                         <th>Sign In Interval</th>
                     </tr>
                     {% for event in sign_in_times %}
-                        <tr>
+                        <tr class="{{'bannerinfo' if get_curr_sign_in_time() == event.name }}">
                             <td> {{ event.description }} </td>
                             <td> {{ event.time.strftime("%H:%M, %b %d") }} </td>
                             <td> {{ get_sign_in_interval(event.time) }} </td>
@@ -89,7 +92,7 @@
 {% endblock %}
 
 {% block scripts %}
-    <script src="{{ static("event/js/qr-scanner.umd.min.js") }}"></script>
+    <script src="{{ static('event/js/qr-scanner.umd.min.js') }}"></script>
     <script type="text/javascript">
         const videoElem = document.getElementById("scanner");
         let oldData = '';

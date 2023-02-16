@@ -48,8 +48,8 @@ class Profile(models.Model):
 
 class UserActivity(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    sign_in = models.DateTimeField(null=True)
-    lunch1 = models.DateTimeField(null=True)
-    dinner1 = models.DateTimeField(null=True)
-    breakfast2 = models.DateTimeField(null=True)
-    lunch2 = models.DateTimeField(null=True)
+    sign_in = models.DateTimeField(null=True, blank=True)
+    lunch1 = models.DateTimeField(null=True, blank=True)
+    dinner1 = models.DateTimeField(null=True, blank=True)
+    breakfast2 = models.DateTimeField(null=True, blank=True)
+    lunch2 = models.DateTimeField(null=True, blank=True)

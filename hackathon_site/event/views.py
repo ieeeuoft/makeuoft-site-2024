@@ -226,16 +226,17 @@ class QRScannerView(LoginRequiredMixin, FormView):
         if isinstance(form, SignInForm):
             try:
                 user = User.objects.get(email__exact=form.cleaned_data["email"])
-                sign_in_event = get_curr_sign_in_time()
+                sign_in_event = get_curr_sign_in_time(False, True)
                 now = datetime.now().replace(tzinfo=settings.TZ_INFO)
 
                 try:
                     user_activity = UserActivity.objects.get(user__exact=user)
-                    if user_activity[sign_in_event] is not None:
+                    if getattr(user_activity, sign_in_event, None) is not None:
                         messages.error(
                             self.request,
                             f'User {form.cleaned_data["email"]} has already signed in!',
                         )
+                        return redirect(self.get_success_url())
                     else:
                         setattr(user_activity, sign_in_event, now)
                         user_activity.save()

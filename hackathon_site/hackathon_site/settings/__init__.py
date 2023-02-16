@@ -361,17 +361,17 @@ SIGN_IN_TIMES = [
     {
         "name": "sign_in",
         "description": "Hackathon Sign In",
-        "time": datetime(2023, 1, 13, 17, 0, 0, tzinfo=TZ_INFO),  # Oct 10th @ 11am
+        "time": datetime(2023, 2, 16, 12, 0, 0, tzinfo=TZ_INFO),  # Oct 10th @ 11am
     },
     {
         "name": "lunch1",
         "description": "Lunch Day 1",
-        "time": datetime(2023, 1, 13, 22, 0, 0, tzinfo=TZ_INFO),  # Oct 10th @ 2pm
+        "time": datetime(2023, 2, 16, 15, 0, 0, tzinfo=TZ_INFO),  # Oct 10th @ 2pm
     },
     {
         "name": "dinner1",
         "description": "Dinner Day 1",
-        "time": datetime(2023, 1, 14, 6, 0, 0, tzinfo=TZ_INFO),  # Oct 10th @ 6pm
+        "time": datetime(2023, 2, 16, 18, 0, 0, tzinfo=TZ_INFO),  # Oct 10th @ 6pm
     },
     {
         "name": "breakfast2",

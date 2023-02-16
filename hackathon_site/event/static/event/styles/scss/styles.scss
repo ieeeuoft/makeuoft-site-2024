@@ -639,29 +639,30 @@ nav ul a {
     padding: 10px;
     text-align: center;
     border-radius: 5px;
-    border: 2px;
+    border: 1px;
+    border-style: solid;
     margin: 10px 0;
 
     &success {
-        border: 1px solid color(success);
+        border-color: color(success);
         background-color: color(successBackground);
         color: color(success);
     }
 
     &error {
-        border: 1px solid color(error);
+        border-color: color(error);
         background-color: color(errorBackground);
         color: color(error);
     }
 
     &info {
-        border: 1px solid color(info);
+        border-color: color(info);
         background-color: color(infoBackground);
         color: color(info);
     }
 
     &warning {
-        border: 1px solid color(warning);
+        border-color: color(warning);
         background-color: color(warningBackground);
         color: color(warning);
     }
