@@ -97,10 +97,6 @@
         const videoElem = document.getElementById("scanner");
         let oldData = '';
 
-        $("#signInButton").click(() => {
-            console.log(oldData.split(';'))
-        });
-
         const qrScanner = new QrScanner(
             videoElem,
             (result) => {
