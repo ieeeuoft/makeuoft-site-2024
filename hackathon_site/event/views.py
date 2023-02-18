@@ -14,7 +14,7 @@ from django_filters import rest_framework as filters
 from rest_framework import generics, mixins
 from rest_framework.filters import SearchFilter
 
-
+from pprint import pprint
 from hackathon_site.utils import (
     is_registration_open,
     is_hackathon_happening,
@@ -218,9 +218,6 @@ class QRScannerView(LoginRequiredMixin, FormView):
             for event in ["breakfast2", "dinner1", "lunch1", "lunch2", "sign_in"]
         }
 
-        print(context["sign_in_counts"])
-
-
         return context
 
     def get_form(self, form_class=None):
@@ -238,6 +235,8 @@ class QRScannerView(LoginRequiredMixin, FormView):
                 user = User.objects.get(email__exact=form.cleaned_data["email"])
                 sign_in_event = get_curr_sign_in_time(False, True)
                 now = datetime.now().replace(tzinfo=settings.TZ_INFO)
+                application = Application.objects.get(user__exact=user)
+                print("info", pprint(vars(application)))
 
                 try:
                     user_activity = UserActivity.objects.get(user__exact=user)
@@ -255,10 +254,28 @@ class QRScannerView(LoginRequiredMixin, FormView):
                     sign_in_obj[sign_in_event] = now
                     UserActivity.objects.create(user=user, **sign_in_obj)
 
-                messages.success(
-                    self.request,
-                    f'User {form.cleaned_data["email"]} successfully signed in',
-                )
+                # Rerutn the information need, and each information will start on a new line
+
+                if application.specific_dietary_requirement != "":
+                    return_string = (
+                        (user.first_name).capitalize()
+                        + " successfully signed in.  👕T-shirt: "
+                        + application.tshirt_size
+                        + " 🍉 Dietary Restrictions: "
+                        + application.dietary_restrictions
+                        + " ⭐️Special Diet Requirement:"
+                        + application.specific_dietary_requirement
+                    )
+                else:
+                    return_string = (
+                        (user.first_name).capitalize()
+                        + " successfully signed in.  👕T-shirt: "
+                        + application.tshirt_size
+                        + " 🍉 Dietary Restrictions: "
+                        + application.dietary_restrictions
+                    )
+
+                messages.success(self.request, return_string)
             except NoEventOccurringException as e:
                 messages.info(self.request, str(e))
             except Exception as e:
