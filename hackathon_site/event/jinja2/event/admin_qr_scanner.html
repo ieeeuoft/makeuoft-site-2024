@@ -76,12 +76,14 @@
                         <th>Event</th>
                         <th>Time</th>
                         <th>Sign In Interval</th>
+                        <th>Scanned</th>
                     </tr>
                     {% for event in sign_in_times %}
                         <tr class="{{'bannerinfo' if get_curr_sign_in_time() == event.name }}">
                             <td> {{ event.description }} </td>
                             <td> {{ event.time.strftime("%H:%M, %b %d") }} </td>
                             <td> {{ get_sign_in_interval(event.time) }} </td>
+                            <td> {{ sign_in_counts[event.name] }} </td>
                         </tr>
                     {% endfor %}
                 </table>

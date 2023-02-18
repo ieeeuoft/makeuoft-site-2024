@@ -8,7 +8,6 @@ from django.urls import reverse_lazy
 from django.views.generic.base import TemplateView
 from django.views.generic.edit import FormView
 
-
 from django.conf import settings
 from django_filters import rest_framework as filters
 
@@ -210,6 +209,17 @@ class QRScannerView(LoginRequiredMixin, FormView):
 
         if isinstance(context["form"], SignInForm):
             context["sign_in_form"] = context["form"]
+
+        # Get the total number of users who have signed in in each event
+        # Find the all rows that the sign in event is not null
+        # Then count the number of rows for each event
+        context["sign_in_counts"] = {
+            event: UserActivity.objects.filter(**{f"{event}__isnull": False}).count()
+            for event in ["breakfast2", "dinner1", "lunch1", "lunch2", "sign_in"]
+        }
+
+        print(context["sign_in_counts"])
+
 
         return context
 
