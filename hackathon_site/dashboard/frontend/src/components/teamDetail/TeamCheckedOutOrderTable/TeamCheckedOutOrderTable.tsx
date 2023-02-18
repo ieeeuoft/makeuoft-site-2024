@@ -31,8 +31,11 @@ import {
     isReturnedLoadingSelector,
     returnItems,
 } from "slices/order/teamOrderSlice";
-import { hardwareSelectors } from "slices/hardware/hardwareSlice";
-import { displaySnackbar } from "slices/ui/uiSlice";
+import {
+    getUpdatedHardwareDetails,
+    hardwareSelectors,
+} from "slices/hardware/hardwareSlice";
+import { displaySnackbar, openProductOverview } from "slices/ui/uiSlice";
 
 const createDropdownList = (number: number) => {
     let entry = [];
@@ -98,6 +101,11 @@ export const TeamCheckedOutOrderTable = () => {
                 })
             );
         }
+    };
+
+    const openProductOverviewPanel = (hardwareId: number) => {
+        dispatch(getUpdatedHardwareDetails(hardwareId));
+        dispatch(openProductOverview());
     };
 
     return (
