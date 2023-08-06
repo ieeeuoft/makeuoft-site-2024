@@ -45,13 +45,14 @@ if DEBUG:
 else:
     # NOTE: If you aren't ieee uoft, put your websites here
     ALLOWED_HOSTS = [
-        "makeuoft.ca", 
+        "makeuoft.ca",
         "www.makeuoft.ca",
         "hardware.makeuoft.ca",
-        "www.hardware.makeuoft.ca"]
+        "www.hardware.makeuoft.ca",
+    ]
     CORS_ORIGIN_REGEX_WHITELIST = [
         r"^https://(?:www\.)?makeuoft\.ca",
-        r"^https://(?:www\.)?\w+\.makeuoft\.ca",,
+        r"^https://(?:www\.)?\w+\.makeuoft\.ca",
     ]
     HSS_URL = "https://hardware.makeuoft.ca/"
     CSRF_COOKIE_DOMAIN = ".makeuoft.ca"
