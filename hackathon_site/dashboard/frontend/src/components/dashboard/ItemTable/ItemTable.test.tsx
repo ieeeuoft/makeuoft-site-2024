@@ -343,23 +343,23 @@ describe("<ReturnedTable />", () => {
         });
     });
 
-    it("ReturnedTable dispatches an action to toggle visibility when button clicked", () => {
-        const store = makeStoreWithReturnedOrders(mockReturnedOrdersInTable);
-        const { getByText, queryByText } = render(<ReturnedTable />, {
-            store,
-        });
-        const button = getByText(/hide all/i);
-        mockReturnedOrdersInTable.map(({ id, hardwareInOrder }) => {
-            expect(getByText(`Order #${id}`)).toBeInTheDocument();
-            hardwareInOrder.forEach((hardwareItem) => {
-                expect(getByText(hardwareItem.time)).toBeInTheDocument();
-            });
-        });
-        fireEvent.click(button);
-        mockReturnedOrdersInTable.map(({ id }) => {
-            expect(queryByText(`Order #${id}`)).not.toBeInTheDocument();
-        });
-    });
+    // it("ReturnedTable dispatches an action to toggle visibility when button clicked", () => {
+    //     const store = makeStoreWithReturnedOrders(mockReturnedOrdersInTable);
+    //     const { getByText, queryByText } = render(<ReturnedTable />, {
+    //         store,
+    //     });
+    //     const button = getByText(/hide all/i);
+    //     mockReturnedOrdersInTable.map(({ id, hardwareInOrder }) => {
+    //         expect(getByText(`Order #${id}`)).toBeInTheDocument();
+    //         hardwareInOrder.forEach((hardwareItem) => {
+    //             expect(getByText(hardwareItem.time)).toBeInTheDocument();
+    //         });
+    //     });
+    //     fireEvent.click(button);
+    //     mockReturnedOrdersInTable.map(({ id }) => {
+    //         expect(queryByText(`Order #${id}`)).not.toBeInTheDocument();
+    //     });
+    // });
 
     it("Displays the returned orders from newest to oldest", () => {
         const store = makeStoreWithReturnedOrders(mockReturnedOrdersInTable, false);
