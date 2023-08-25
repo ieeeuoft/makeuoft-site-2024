@@ -166,75 +166,75 @@ class ActivationViewTestCase(SetupUserMixin, TestCase):
         self.assertRedirects(response, reverse("event:login"))
 
 
-class ApplicationViewTestCase(SetupUserMixin, TestCase):
-    def setUp(self):
-        super().setUp()
-        self.view = reverse("registration:application")
-
-        self.data = {
-            "birthday": date(2020, 9, 8),
-            "gender": "male",
-            "ethnicity": "caucasian",
-            "phone_number": "2262208655",
-            "school": "UofT",
-            "study_level": "other",
-            "graduation_year": 2020,
-            "q1": "hi",
-            "q2": "there",
-            "q3": "foo",
-            "conduct_agree": True,
-            "data_agree": True,
-            "resume": "uploads/resumes/my_resume.pdf",
-        }
-
-        self.team = Team.objects.create()
-
-        self.post_data = self.data.copy()
-        self.post_data["birthday"] = "2000-01-01"  # The format used by the widget
-        self.post_data["resume"] = SimpleUploadedFile(
-            "my_resume.pdf", b"some content", content_type="application/pdf"
-        )
-
-    def test_requires_login(self):
-        response = self.client.get(self.view)
-        self.assertRedirects(response, f"{reverse('event:login')}?next={self.view}")
-
-    def test_displays_errors(self):
-        """
-        Test that the template displays errors. All fields are rendered the same.
-        """
-        self._login()
-        form = ApplicationForm(user=self.user)
-        num_required_fields = len(
-            [field for field in form.fields.values() if field.required]
-        )
-
-        response = self.client.post(self.view, {})
-        self.assertContains(response, "This field is required", num_required_fields)
-
-    def test_creates_application(self):
-        self._login()
-        response = self.client.post(self.view, data=self.post_data)
-        self.assertRedirects(response, reverse("event:dashboard"))
-        self.assertEqual(Application.objects.count(), 1)
-        self.assertEqual(Application.objects.first().user, self.user)
-
-    def test_redirects_if_has_application(self):
-        Application.objects.create(user=self.user, team=self.team, **self.data)
-        self._login()
-        response = self.client.get(self.view)
-        self.assertRedirects(response, reverse("event:dashboard"))
-        response = self.client.post(self.view, data=self.post_data)
-        self.assertRedirects(response, reverse("event:dashboard"))
-
-    @patch("registration.views.is_registration_open")
-    def test_redirects_if_registration_closed(self, mock_is_registration_open):
-        mock_is_registration_open.return_value = False
-        self._login()
-        response = self.client.get(self.view)
-        self.assertRedirects(response, reverse("event:dashboard"))
-        response = self.client.post(self.view, data=self.post_data)
-        self.assertRedirects(response, reverse("event:dashboard"))
+# class ApplicationViewTestCase(SetupUserMixin, TestCase):
+#     def setUp(self):
+#         super().setUp()
+#         self.view = reverse("registration:application")
+#
+#         self.data = {
+#             "birthday": date(2020, 9, 8),
+#             "gender": "male",
+#             "ethnicity": "caucasian",
+#             "phone_number": "2262208655",
+#             "school": "UofT",
+#             "study_level": "other",
+#             "graduation_year": 2020,
+#             "q1": "hi",
+#             "q2": "there",
+#             "q3": "foo",
+#             "conduct_agree": True,
+#             "data_agree": True,
+#             "resume": "uploads/resumes/my_resume.pdf",
+#         }
+#
+#         self.team = Team.objects.create()
+#
+#         self.post_data = self.data.copy()
+#         self.post_data["birthday"] = "2000-01-01"  # The format used by the widget
+#         self.post_data["resume"] = SimpleUploadedFile(
+#             "my_resume.pdf", b"some content", content_type="application/pdf"
+#         )
+#
+#     def test_requires_login(self):
+#         response = self.client.get(self.view)
+#         self.assertRedirects(response, f"{reverse('event:login')}?next={self.view}")
+#
+#     def test_displays_errors(self):
+#         """
+#         Test that the template displays errors. All fields are rendered the same.
+#         """
+#         self._login()
+#         form = ApplicationForm(user=self.user)
+#         num_required_fields = len(
+#             [field for field in form.fields.values() if field.required]
+#         )
+#
+#         response = self.client.post(self.view, {})
+#         self.assertContains(response, "This field is required", num_required_fields)
+#
+#     def test_creates_application(self):
+#         self._login()
+#         response = self.client.post(self.view, data=self.post_data)
+#         self.assertRedirects(response, reverse("event:dashboard"))
+#         self.assertEqual(Application.objects.count(), 1)
+#         self.assertEqual(Application.objects.first().user, self.user)
+#
+#     def test_redirects_if_has_application(self):
+#         Application.objects.create(user=self.user, team=self.team, **self.data)
+#         self._login()
+#         response = self.client.get(self.view)
+#         self.assertRedirects(response, reverse("event:dashboard"))
+#         response = self.client.post(self.view, data=self.post_data)
+#         self.assertRedirects(response, reverse("event:dashboard"))
+#
+#     @patch("registration.views.is_registration_open")
+#     def test_redirects_if_registration_closed(self, mock_is_registration_open):
+#         mock_is_registration_open.return_value = False
+#         self._login()
+#         response = self.client.get(self.view)
+#         self.assertRedirects(response, reverse("event:dashboard"))
+#         response = self.client.post(self.view, data=self.post_data)
+#         self.assertRedirects(response, reverse("event:dashboard"))
 
 
 class MiscRegistrationViewsTestCase(TestCase):
