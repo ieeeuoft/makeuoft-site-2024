@@ -1,4 +1,5 @@
 import axios, { AxiosResponse } from "axios";
+import { serverUrl } from "../constants";
 
 // Re-export the response type, so it's available without needing to import axios
 export type { AxiosResponse } from "axios";
@@ -14,7 +15,7 @@ if (process.env.NODE_ENV === "development") {
 
     SERVER_URL = process.env.REACT_APP_DEV_SERVER_URL?.replace(/\/$/, "");
 } else {
-    SERVER_URL = "";
+    SERVER_URL = serverUrl;
 }
 
 export const getCsrfToken = () => {
