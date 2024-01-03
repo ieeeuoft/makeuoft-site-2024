@@ -315,8 +315,8 @@ DEFAULT_FROM_EMAIL = "hello@makeuoft.ca"
 CONTACT_EMAIL = DEFAULT_FROM_EMAIL
 HSS_ADMIN_EMAIL = "hardware@makeuoft.ca"
 
-REGISTRATION_OPEN_DATE = datetime(2024, 2, 1, tzinfo=TZ_INFO)
-REGISTRATION_CLOSE_DATE = datetime(2024, 2, 10, tzinfo=TZ_INFO)
+REGISTRATION_OPEN_DATE = datetime(2024, 1, 9, tzinfo=TZ_INFO)
+REGISTRATION_CLOSE_DATE = datetime(2024, 2, 4, tzinfo=TZ_INFO)
 EVENT_START_DATE = datetime(2024, 2, 17, 10, 0, 0, tzinfo=TZ_INFO)
 EVENT_END_DATE = datetime(2024, 2, 18, 17, 0, 0, tzinfo=TZ_INFO)
 HARDWARE_SIGN_OUT_START_DATE = datetime(2024, 2, 1, tzinfo=TZ_INFO)
