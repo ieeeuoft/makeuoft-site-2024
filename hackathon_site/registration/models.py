@@ -262,6 +262,13 @@ class Application(models.Model):
         default=False,
     )
 
+    resume_sharing = models.BooleanField(
+        help_text="I consent to IEEE UofT sharing my resume with event sponsors.",
+        blank=True,
+        null=True,
+        default=False,
+    )
+
     rsvp = models.BooleanField(null=True)
     created_at = models.DateTimeField(auto_now_add=True, null=False)
     updated_at = models.DateTimeField(auto_now=True, null=False)

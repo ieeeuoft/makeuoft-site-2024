@@ -134,12 +134,15 @@ class ApplicationForm(forms.ModelForm):
             "linkedin",
             "github",
             "devpost",
+            "how_many_hackathons",
+            "what_hackathon_experience",
             "why_participate",
             "what_technical_experience",
             "discovery_method",
             "conduct_agree",
             "logistics_agree",
             "email_agree",
+            "resume_sharing",
         ]
         widgets = {
             "school": forms.Select(
@@ -148,10 +151,18 @@ class ApplicationForm(forms.ModelForm):
                 choices=((None, ""),),
             ),
             "resume": MaterialFileInput(),
+
+            "what_hackathon_experience": forms.Textarea(
+                attrs={
+                    "class": "materialize-textarea",
+                    "placeholder": "My past experience is...",
+                    "data-length": 1000,
+                }
+            ),
             "why_participate": forms.Textarea(
                 attrs={
                     "class": "materialize-textarea",
-                    "placeholder": "I want to participate in NewHacks because...",
+                    "placeholder": "I want to participate in MakeUofT because...",
                     "data-length": 1000,
                 }
             ),
@@ -162,13 +173,6 @@ class ApplicationForm(forms.ModelForm):
                     "data-length": 1000,
                 }
             ),
-            # "discovery_method": forms.Textarea(
-            #     attrs={
-            #         "class": "materialize-textarea",
-            #         "placeholder": "My past experiences are...",
-            #         "data-length": 1000,
-            #     }
-            # ),
             "phone_number": forms.TextInput(attrs={"placeholder": "+1 (123) 456-7890"}),
             "graduation_year": forms.NumberInput(attrs={"placeholder": 2023}),
         }
@@ -195,7 +199,7 @@ class ApplicationForm(forms.ModelForm):
 
     def clean_age(self):
         user_age = self.cleaned_data["age"]
-        if user_age < settings.MINIMUM_AGE:
+        if int(user_age) < settings.MINIMUM_AGE:
             raise forms.ValidationError(
                 _(f"You must be {settings.MINIMUM_AGE} to participate."),
                 code="user_is_too_young_to_participate",
