@@ -151,7 +151,6 @@ class ApplicationForm(forms.ModelForm):
                 choices=((None, ""),),
             ),
             "resume": MaterialFileInput(),
-
             "what_hackathon_experience": forms.Textarea(
                 attrs={
                     "class": "materialize-textarea",

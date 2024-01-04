@@ -4,6 +4,7 @@ from django.contrib.auth import get_user_model
 import uuid
 
 from registration.validators import UploadedFileValidator
+
 # from django-countries.fields import CountryField
 
 User = get_user_model()
@@ -97,14 +98,17 @@ class Application(models.Model):
         ("discord", "Discord"),
         ("email", "Email"),
         ("from a friend", "From a friend"),
-        ("other", "Other")
+        ("other", "Other"),
     ]
 
     STUDY_LEVEL_CHOICES = [
         (None, ""),
         ("less-highschool", "Less than Secondary/High School"),
         ("highschool", "Secondary/High School"),
-        ("undergraduate-twoyears", "Undergraduate University (2 year - community college or similar)"),
+        (
+            "undergraduate-twoyears",
+            "Undergraduate University (2 year - community college or similar)",
+        ),
         ("undergraduate-threeyears", "Undergraduate University (3+ year)"),
         ("gradschool", "Graduate University (Masters, Professional, Doctoral, etc) "),
         ("postdoctorate", "Post Doctorate"),
@@ -157,8 +161,12 @@ class Application(models.Model):
     gender = models.CharField(max_length=50, choices=GENDER_CHOICES, null=False)
     pronouns = models.CharField(max_length=50, choices=PRONOUNS_CHOICES, null=False)
     ethnicity = models.CharField(max_length=50, choices=ETHNICITY_CHOICES, null=False)
-    country = models.CharField(max_length=255, null=False) # TODO figure out how to use django-countries module
-    school = models.CharField(max_length=255, null=False) # TODO import csv file of schools for choices dropdown
+    country = models.CharField(
+        max_length=255, null=False
+    )  # TODO figure out how to use django-countries module
+    school = models.CharField(
+        max_length=255, null=False
+    )  # TODO import csv file of schools for choices dropdown
     phone_number = models.CharField(
         max_length=20,
         null=False,
@@ -213,9 +221,9 @@ class Application(models.Model):
     what_hackathon_experience = models.TextField(
         null=False,
         help_text="If you’ve been to a hackathon, briefly tell "
-                  "us your experience. If not, describe what you"
-                  " expect to see and experience. (1000 chars. "
-                  "max)",
+        "us your experience. If not, describe what you"
+        " expect to see and experience. (1000 chars. "
+        "max)",
         max_length=1000,
     )
     why_participate = models.TextField(
@@ -236,19 +244,19 @@ class Application(models.Model):
     )
     conduct_agree = models.BooleanField(
         help_text="I have read and agree to the "
-                  '<a href="https://static.mlh.io/docs/mlh-code-of-conduct.pdf" rel="noopener noreferrer" target="_blank">MLH code of conduct</a>.',
+        '<a href="https://static.mlh.io/docs/mlh-code-of-conduct.pdf" rel="noopener noreferrer" target="_blank">MLH code of conduct</a>.',
         blank=False,
         null=False,
         default=False,
     )
     logistics_agree = models.BooleanField(
         help_text="I authorize you to share my application/registration information with Major League Hacking"
-                  " for event administration, ranking, and MLH administration in-line with the "
-                  '<a href="https://mlh.io/privacy" rel="noopener noreferrer" target="_blank">MLH Privacy Policy</a>. '
-                  "I further agree to the terms of both the "
-                  '<a href="https://github.com/MLH/mlh-policies/blob/main/contest-terms.md" rel="noopener noreferrer" target="_blank">MLH Contest Terms and Conditions</a>'
-                  " and the "
-                  '<a href="https://mlh.io/privacy" rel="noopener noreferrer" target="_blank">MLH Privacy Policy.</a>',
+        " for event administration, ranking, and MLH administration in-line with the "
+        '<a href="https://mlh.io/privacy" rel="noopener noreferrer" target="_blank">MLH Privacy Policy</a>. '
+        "I further agree to the terms of both the "
+        '<a href="https://github.com/MLH/mlh-policies/blob/main/contest-terms.md" rel="noopener noreferrer" target="_blank">MLH Contest Terms and Conditions</a>'
+        " and the "
+        '<a href="https://mlh.io/privacy" rel="noopener noreferrer" target="_blank">MLH Privacy Policy.</a>',
         blank=False,
         null=False,
         default=False,
@@ -256,7 +264,7 @@ class Application(models.Model):
 
     email_agree = models.BooleanField(
         help_text="I authorize MLH to send me pre- and post-event informational"
-                  " emails, which contain free credit and opportunities from their partners.",
+        " emails, which contain free credit and opportunities from their partners.",
         blank=True,
         null=True,
         default=False,

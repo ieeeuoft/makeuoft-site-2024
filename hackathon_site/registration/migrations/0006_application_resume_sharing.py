@@ -6,13 +6,18 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('registration', '0005_auto_20240103_2009'),
+        ("registration", "0005_auto_20240103_2009"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='application',
-            name='resume_sharing',
-            field=models.BooleanField(blank=True, default=False, help_text='I consent to IEEE UofT sharing my resume with event sponsors.', null=True),
+            model_name="application",
+            name="resume_sharing",
+            field=models.BooleanField(
+                blank=True,
+                default=False,
+                help_text="I consent to IEEE UofT sharing my resume with event sponsors.",
+                null=True,
+            ),
         ),
     ]
