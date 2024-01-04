@@ -38,7 +38,7 @@ class ApplicationResource(resources.ModelResource):
             "user__last_name",
             "user__email",
             "team__team_code",
-            "birthday",
+            "age",
             "gender",
             "ethnicity",
             "school",
