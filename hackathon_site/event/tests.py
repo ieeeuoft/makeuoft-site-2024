@@ -880,7 +880,8 @@ class CreateProfileSerializerTestCase(TestCase):
             "why_participate": "there",
             "what_technical_experience": "foo",
             "conduct_agree": True,
-            "data_agree": True,
+            "logistics_agree": True,
+            "email_agree": True,
             "resume": "uploads/resumes/my_resume.pdf",
         }
         self.application = Application.objects.create(
