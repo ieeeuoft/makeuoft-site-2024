@@ -92,8 +92,8 @@ class ApplicationFormTestCase(SetupUserMixin, TestCase):
             "study_level": "other",
             "graduation_year": 2020,
             "what_hackathon_experience": "hi",
-            "id_why_participate": "there",
-            "id_what_technical_experience": "foo",
+            "why_participate": "there",
+            "what_technical_experience": "foo",
             "conduct_agree": True,
             "logistics_agree": True,
             "email_agree": True,
@@ -261,20 +261,20 @@ class ApplicationFormTestCase(SetupUserMixin, TestCase):
 
     def test_invalid_birthday(self):
         data = self.data.copy()
-        # data["age"] = (
-        #     settings.EVENT_START_DATE
-        #     - relativedelta(years=settings.MINIMUM_AGE - 1, days=360)
-        # ).date()
+        data["age"] = (
+            settings.EVENT_START_DATE
+            - relativedelta(years=settings.MINIMUM_AGE - 1, days=360)
+        ).date()
         form = self._build_form(data=data)
         self.assertFalse(form.is_valid())
         self.assertIn(
             f"You must be {settings.MINIMUM_AGE} to participate.", form.errors["age"],
         )
 
-        # data["age"] = (
-        #     settings.EVENT_START_DATE
-        #     - relativedelta(years=settings.MINIMUM_AGE, days=1)
-        # ).date()
+        data["age"] = (
+            settings.EVENT_START_DATE
+            - relativedelta(years=settings.MINIMUM_AGE, days=1)
+        ).date()
         form = self._build_form(data=data)
         self.assertTrue(form.is_valid())
 
