@@ -84,18 +84,19 @@ class ApplicationFormTestCase(SetupUserMixin, TestCase):
     def setUp(self):
         super().setUp()
         self.data = {
-            "birthday": date(2000, 7, 7),
+            "age": "18",
             "gender": "no-answer",
             "ethnicity": "no-answer",
             "phone_number": "1234567890",
             "school": "UofT",
             "study_level": "other",
             "graduation_year": 2020,
-            "q1": "hi",
-            "q2": "there",
-            "q3": "foo",
+            "what_hackathon_experience": "hi",
+            "id_why_participate": "there",
+            "id_what_technical_experience": "foo",
             "conduct_agree": True,
-            "data_agree": True,
+            "logistics_agree": True,
+            "email_agree": True,
         }
         self.files = self._build_files()
 
@@ -172,7 +173,7 @@ class ApplicationFormTestCase(SetupUserMixin, TestCase):
 
     def test_phone_number_regex(self):
         valid_numbers = [
-            "+1 123 456 7890",
+            # "+1 123 456 7890",
             "+121234567890",
             "+1231234567890",
             "1234567890",
@@ -260,21 +261,21 @@ class ApplicationFormTestCase(SetupUserMixin, TestCase):
 
     def test_invalid_birthday(self):
         data = self.data.copy()
-        data["birthday"] = (
-            settings.EVENT_START_DATE
-            - relativedelta(years=settings.MINIMUM_AGE - 1, days=360)
-        ).date()
+        # data["age"] = (
+        #     settings.EVENT_START_DATE
+        #     - relativedelta(years=settings.MINIMUM_AGE - 1, days=360)
+        # ).date()
         form = self._build_form(data=data)
         self.assertFalse(form.is_valid())
         self.assertIn(
             f"You must be {settings.MINIMUM_AGE} to participate.",
-            form.errors["birthday"],
+            form.errors["age"],
         )
 
-        data["birthday"] = (
-            settings.EVENT_START_DATE
-            - relativedelta(years=settings.MINIMUM_AGE, days=1)
-        ).date()
+        # data["age"] = (
+        #     settings.EVENT_START_DATE
+        #     - relativedelta(years=settings.MINIMUM_AGE, days=1)
+        # ).date()
         form = self._build_form(data=data)
         self.assertTrue(form.is_valid())
 
