@@ -8,9 +8,10 @@ from django.utils.translation import gettext_lazy as _
 from django_registration import validators
 from django.conf import settings
 
-from hackathon_site.utils import is_registration_open
+from hackathon_site.utils import is_registration_open, is_hackathon_happening
 from registration.models import Application, Team, User
 from registration.widgets import MaterialFileInput
+from review.models import Review
 
 
 class SignUpForm(UserCreationForm):
@@ -91,16 +92,23 @@ class ApplicationForm(forms.ModelForm):
             "birthday",
             "gender",
             "ethnicity",
+            "city",
+            "country",
             "phone_number",
+            "tshirt_size",
+            "dietary_restrictions",
+            "specific_dietary_requirement",
             "school",
             "study_level",
+            "program",
             "graduation_year",
+            "how_many_hackathons",
+            "what_hackathon_experience",
+            "why_participate",
+            "what_technical_experience",
+            "referral_source",
             "resume",
-            "q1",
-            "q2",
-            "q3",
-            "conduct_agree",
-            "data_agree",
+            "resume_sharing",
         ]
         widgets = {
             "birthday": forms.DateInput(format="%Y-%m-%d", attrs={"type": "date"}),
@@ -109,30 +117,21 @@ class ApplicationForm(forms.ModelForm):
                 attrs={"class": "select2-school-select"},
                 choices=((None, ""),),
             ),
-            "resume": MaterialFileInput(),
-            "q1": forms.Textarea(
-                attrs={
-                    "class": "materialize-textarea",
-                    "placeholder": "I enjoy cake",
-                    "data-length": 1000,
-                }
+            "what_hackathon_experience": forms.Textarea(
+                attrs={"class": "materialize-textarea", "data-length": 1000,}
             ),
-            "q2": forms.Textarea(
-                attrs={
-                    "class": "materialize-textarea",
-                    "placeholder": "Cake is wonderful",
-                    "data-length": 1000,
-                }
+            "why_participate": forms.Textarea(
+                attrs={"class": "materialize-textarea", "data-length": 1000,}
             ),
-            "q3": forms.Textarea(
-                attrs={
-                    "class": "materialize-textarea",
-                    "placeholder": "I could really go for cake right now",
-                    "data-length": 1000,
-                }
+            "what_technical_experience": forms.Textarea(
+                attrs={"class": "materialize-textarea", "data-length": 1000,}
             ),
+            "referral_source": forms.Textarea(
+                attrs={"class": "materialize-textarea", "data-length": 1000,}
+            ),
+            "resume": MaterialFileInput(attrs={"accept": ".pdf"}),
             "phone_number": forms.TextInput(attrs={"placeholder": "+1 (123) 456-7890"}),
-            "graduation_year": forms.NumberInput(attrs={"placeholder": 2020}),
+            "graduation_year": forms.NumberInput(attrs={"placeholder": 2023}),
         }
 
     def __init__(self, *args, **kwargs):
@@ -147,13 +146,25 @@ class ApplicationForm(forms.ModelForm):
             raise forms.ValidationError(
                 _("Registration has closed."), code="registration_closed"
             )
-
         cleaned_data = super().clean()
         if hasattr(self.user, "application"):
             raise forms.ValidationError(
                 _("User has already submitted an application."), code="invalid"
             )
         return cleaned_data
+
+    def clean_specific_dietary_requirement(self):
+        if "dietary_restrictions" in self.cleaned_data:
+            dietary_restriction = self.cleaned_data["dietary_restrictions"]
+            if dietary_restriction == "other but specify":
+                specific_dietary_requirement = self.cleaned_data[
+                    "specific_dietary_requirement"
+                ]
+                if specific_dietary_requirement == "":
+                    raise forms.ValidationError(
+                        "Please specify your dietary restriction"
+                    )
+        return self.cleaned_data["specific_dietary_requirement"]
 
     def clean_birthday(self):
         latest_birthday = (
@@ -211,3 +222,50 @@ class JoinTeamForm(forms.Form):
             raise forms.ValidationError(_(f"Team {team_code} is full."))
 
         return team_code
+
+
+class SignInForm(forms.Form):
+    email = forms.EmailField()
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.label_suffix = ""
+        self.error_css_class = "invalid"
+
+    def clean(self):
+        if not is_hackathon_happening():
+            raise forms.ValidationError(
+                _("You cannot sign in outside of the hackathon period."),
+                code="invalid_sign_in_time",
+            )
+
+        return super().clean()
+
+    def clean_email(self):
+        email = self.cleaned_data["email"]
+
+        try:
+            user = User.objects.get(email__exact=email)
+            application = Application.objects.get(user__exact=user)
+            review = Review.objects.get(application__exact=application)
+            if review.status == "Accepted":
+                if settings.RSVP and application.rsvp is None:
+                    raise forms.ValidationError(
+                        _(f"User {email} has not RSVP'd to the hackathon")
+                    )
+            else:
+                raise forms.ValidationError(
+                    _(
+                        f"User {email} has not been Accepted to attend {settings.HACKATHON_NAME}"
+                    )
+                )
+        except User.DoesNotExist:
+            raise forms.ValidationError(_(f"User {email} does not exist."))
+        except Application.DoesNotExist:
+            raise forms.ValidationError(
+                _(f"User {email} has not applied to {settings.HACKATHON_NAME}")
+            )
+        except Exception as e:
+            raise e
+
+        return email
