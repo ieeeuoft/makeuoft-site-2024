@@ -172,7 +172,7 @@ class ApplicationFormTestCase(SetupUserMixin, TestCase):
 
     def test_phone_number_regex(self):
         valid_numbers = [
-            # "+1 123 456 7890",
+            "+1 123 456 7890",
             "+121234567890",
             "+1231234567890",
             "1234567890",
