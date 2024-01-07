@@ -96,7 +96,6 @@ class ApplicationFormTestCase(SetupUserMixin, TestCase):
             "what_technical_experience": "foo",
             "conduct_agree": True,
             "logistics_agree": True,
-            "email_agree": True,
         }
         self.files = self._build_files()
 
