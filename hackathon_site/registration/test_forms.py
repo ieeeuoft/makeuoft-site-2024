@@ -268,8 +268,7 @@ class ApplicationFormTestCase(SetupUserMixin, TestCase):
         form = self._build_form(data=data)
         self.assertFalse(form.is_valid())
         self.assertIn(
-            f"You must be {settings.MINIMUM_AGE} to participate.",
-            form.errors["age"],
+            f"You must be {settings.MINIMUM_AGE} to participate.", form.errors["age"],
         )
 
         # data["age"] = (
