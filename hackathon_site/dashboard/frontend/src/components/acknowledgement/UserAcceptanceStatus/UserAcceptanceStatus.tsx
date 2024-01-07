@@ -1,13 +1,13 @@
 import React, { ReactElement } from "react";
 import { Box, Button, Divider, Grid, Link, Typography } from "@material-ui/core";
 import AlertBox from "components/general/AlertBox/AlertBox";
-import { hackathonName } from "constants.js";
+import { hackathonName, serverUrl } from "constants.js";
 
 export const UserAcceptanceMessage = ({
     status,
     handleGetStarted,
 }: {
-    status: "Accepted" | "Waitlisted" | "Rejected" | "Incomplete";
+    status: "Accepted" | "Waitlisted" | "Rejected" | "Incomplete" | "NotStarted";
     handleGetStarted(): any;
 }) => {
     const ACCEPTANCE_MESSAGES: {
@@ -50,9 +50,7 @@ export const UserAcceptanceMessage = ({
             actionMessage: (
                 <Typography variant="h2" align="center">
                     Keep an eye out for your application status changes on your{" "}
-                    <Link href={`${process.env.REACT_APP_DEV_SERVER_URL}/dashboard/`}>
-                        Dashboard
-                    </Link>
+                    <Link href={`${serverUrl}/dashboard/`}>Dashboard</Link>
                 </Typography>
             ),
         },
@@ -63,9 +61,7 @@ export const UserAcceptanceMessage = ({
                 <Typography variant="h2" align="center">
                     We still encourage you to apply for {hackathonName} next year! Keep
                     an eye out for your application status changes on your{" "}
-                    <Link href={`${process.env.REACT_APP_DEV_SERVER_URL}/dashboard/`}>
-                        Dashboard
-                    </Link>
+                    <Link href={`${serverUrl}/dashboard/`}>Dashboard</Link>
                 </Typography>
             ),
         },
@@ -75,16 +71,21 @@ export const UserAcceptanceMessage = ({
             actionMessage: (
                 <Typography variant="h2" align="center">
                     Please finish your application{" "}
-                    <Link
-                        href={`${process.env.REACT_APP_DEV_SERVER_URL}/registration/application/`}
-                    >
-                        here
-                    </Link>{" "}
+                    <Link href={`${serverUrl}/registration/application/`}>here</Link>{" "}
                     and view your application status{" "}
-                    <Link href={`${process.env.REACT_APP_DEV_SERVER_URL}/dashboard/`}>
-                        here
-                    </Link>
-                    .
+                    <Link href={`${serverUrl}/dashboard/`}>here</Link>.
+                </Typography>
+            ),
+        },
+        NotStarted: {
+            title: `Hardware Signout Site is not open yet`,
+            alertColor: "info",
+            actionMessage: (
+                <Typography variant="h2" align="center">
+                    Please wait for further notice from us, See you soon! <br />
+                    <br />
+                    View your application status{" "}
+                    <Link href={`${serverUrl}/dashboard/`}>here</Link>.
                 </Typography>
             ),
         },
@@ -94,10 +95,12 @@ export const UserAcceptanceMessage = ({
             <Typography variant="h1">{ACCEPTANCE_MESSAGES[status].title}</Typography>
             <Grid container justifyContent="center">
                 <Grid item lg={4} md={4} sm={6} xs={12}>
-                    <AlertBox
-                        title={`Acceptance Status: ${status}`}
-                        type={ACCEPTANCE_MESSAGES[status].alertColor}
-                    />
+                    {status !== "NotStarted" && (
+                        <AlertBox
+                            title={`Acceptance Status: ${status}`}
+                            type={ACCEPTANCE_MESSAGES[status].alertColor}
+                        />
+                    )}
                 </Grid>
             </Grid>
             <Divider style={{ margin: "20px 0px" }} />
