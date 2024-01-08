@@ -6,20 +6,34 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('registration', '0007_auto_20240107_1917'),
+        ("registration", "0007_auto_20240107_1917"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='application',
-            name='dietary_restrictions',
-            field=models.CharField(choices=[(None, ''), ('halal', 'Halal'), ('vegetarian', 'Vegetarian'), ('gluten-Free', 'Gluten-free'), ('other but specify', 'Other but Specify')], default='', max_length=50),
+            model_name="application",
+            name="dietary_restrictions",
+            field=models.CharField(
+                choices=[
+                    (None, ""),
+                    ("halal", "Halal"),
+                    ("vegetarian", "Vegetarian"),
+                    ("gluten-Free", "Gluten-free"),
+                    ("other but specify", "Other but Specify"),
+                ],
+                default="",
+                max_length=50,
+            ),
             preserve_default=False,
         ),
         migrations.AddField(
-            model_name='application',
-            name='tshirt_size',
-            field=models.CharField(choices=[(None, ''), ('S', 'S'), ('M', 'M'), ('L', 'L'), ('XL', 'XL')], default='', max_length=50),
+            model_name="application",
+            name="tshirt_size",
+            field=models.CharField(
+                choices=[(None, ""), ("S", "S"), ("M", "M"), ("L", "L"), ("XL", "XL")],
+                default="",
+                max_length=50,
+            ),
             preserve_default=False,
         ),
     ]

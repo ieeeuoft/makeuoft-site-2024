@@ -164,8 +164,12 @@ class Application(models.Model):
     country = models.CharField(
         max_length=255, null=False
     )  # TODO figure out how to use django-countries module
-    dietary_restrictions = models.CharField(max_length=50, choices=DIETARY_RESTRICTIONS_CHOICES, null=False)
-    tshirt_size = models.CharField(max_length=50, choices=TSHIRT_SIZE_CHOICES, null=False)
+    dietary_restrictions = models.CharField(
+        max_length=50, choices=DIETARY_RESTRICTIONS_CHOICES, null=False
+    )
+    tshirt_size = models.CharField(
+        max_length=50, choices=TSHIRT_SIZE_CHOICES, null=False
+    )
 
     school = models.CharField(
         max_length=255, null=False
@@ -249,14 +253,14 @@ class Application(models.Model):
         null=False,
         help_text="Do you identify as a part of an underrepresented group in the technology industry?",
         choices=YES_NO_UNSURE,
-        max_length=1000
+        max_length=1000,
     )
 
     sexual_orientation = models.CharField(
         null=False,
         help_text="Do you consider yourself to be any of the following?",
         choices=SEXUALITY,
-        max_length=1000
+        max_length=1000,
     )
 
     conduct_agree = models.BooleanField(

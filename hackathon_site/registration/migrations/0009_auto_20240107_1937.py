@@ -6,20 +6,40 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('registration', '0008_auto_20240107_1927'),
+        ("registration", "0008_auto_20240107_1927"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='application',
-            name='sexual_orientation',
-            field=models.CharField(choices=[(None, ''), ('straight', 'Heterosexual or straight'), ('gay-lesbian', 'Gay or lesbian'), ('bisexual', 'Bisexual'), ('different', 'Different Identity (Please Specify'), ('no-answer', 'Prefer not to answer')], default='', max_length=50),
+            model_name="application",
+            name="sexual_orientation",
+            field=models.CharField(
+                choices=[
+                    (None, ""),
+                    ("straight", "Heterosexual or straight"),
+                    ("gay-lesbian", "Gay or lesbian"),
+                    ("bisexual", "Bisexual"),
+                    ("different", "Different Identity (Please Specify"),
+                    ("no-answer", "Prefer not to answer"),
+                ],
+                default="",
+                max_length=50,
+            ),
             preserve_default=False,
         ),
         migrations.AddField(
-            model_name='application',
-            name='underrepresented_community',
-            field=models.CharField(choices=[(None, ''), ('yes', 'Yes'), ('no', 'No'), ('unsure', 'Unsure')], default='', max_length=50),
+            model_name="application",
+            name="underrepresented_community",
+            field=models.CharField(
+                choices=[
+                    (None, ""),
+                    ("yes", "Yes"),
+                    ("no", "No"),
+                    ("unsure", "Unsure"),
+                ],
+                default="",
+                max_length=50,
+            ),
             preserve_default=False,
         ),
     ]
