@@ -149,8 +149,6 @@ class ApplicationFormTestCase(SetupUserMixin, TestCase):
             del bad_data[field]
 
             form = self._build_form(data=bad_data)
-            if form.is_valid():
-                print(bad_data[field])
             self.assertFalse(form.is_valid())
             self.assertIn(field, form.errors, msg=field)
             self.assertIn("This field is required.", form.errors[field], msg=field)
