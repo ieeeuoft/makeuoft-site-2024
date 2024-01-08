@@ -140,7 +140,7 @@ class ApplicationFormTestCase(SetupUserMixin, TestCase):
             "resume_sharing",
             "rsvp",
             "conduct_agree",
-            "logistics_agree"
+            "logistics_agree",
         }
         for field in self.data:
             if field in optional_fields:
