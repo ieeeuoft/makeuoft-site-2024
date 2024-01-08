@@ -5,8 +5,6 @@ import uuid
 
 from registration.validators import UploadedFileValidator
 
-# from django-countries.fields import CountryField
-
 User = get_user_model()
 
 
@@ -162,9 +160,7 @@ class Application(models.Model):
     gender = models.CharField(max_length=50, choices=GENDER_CHOICES, null=False)
     pronouns = models.CharField(max_length=50, choices=PRONOUNS_CHOICES, null=False)
     ethnicity = models.CharField(max_length=50, choices=ETHNICITY_CHOICES, null=False)
-    country = models.CharField(
-        max_length=255, null=False
-    )  # TODO figure out how to use django-countries module
+    country = models.CharField(max_length=255, null=False)
     dietary_restrictions = models.CharField(
         max_length=50, choices=DIETARY_RESTRICTIONS_CHOICES, null=False
     )
@@ -172,9 +168,7 @@ class Application(models.Model):
         max_length=50, choices=TSHIRT_SIZE_CHOICES, null=False
     )
 
-    school = models.CharField(
-        max_length=255, null=False
-    )  # TODO import csv file of schools for choices dropdown
+    school = models.CharField(max_length=255, null=False)
     phone_number = models.CharField(
         max_length=20,
         null=False,
