@@ -54,7 +54,7 @@
 
     <div class="row">
         {{ render_field(form.dietary_restrictions, size="s12 m6 select2-wrapper") }}
-        {{ render_field(form.tshirt_size, size="s12 m6", show_help_text_as_label=True) }}
+        {{ render_field(form.tshirt_size, size="s12 m6 select2-wrapper", show_help_text_as_label=True) }}
     </div>
 
 
@@ -83,7 +83,7 @@
     {{ render_field(form.why_participate, show_help_text_as_label=True) }}
     {{ render_field(form.what_technical_experience, show_help_text_as_label=True) }}
     {{ render_field(form.discovery_method, size="s12 m6 select2-wrapper", show_help_text_as_label=True) }}
-    {{ render_field(form.sexual_orientation, size="s12 m6", show_help_text_as_label=True) }}
+    {{ render_field(form.sexual_orientation, size="s12 m6 select2-wrapper", show_help_text_as_label=True) }}
     {{ render_field(form.underrepresented_community, size="s12 select2-wrapper", show_help_text_as_label=True) }}
     {{ render_checkbox_field(form.conduct_agree) }}
     {{ render_checkbox_field(form.logistics_agree) }}

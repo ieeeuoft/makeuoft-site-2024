@@ -129,6 +129,7 @@ class Application(models.Model):
 
     DIETARY_RESTRICTIONS_CHOICES = [
         (None, ""),
+        ("none", "None"),
         ("halal", "Halal"),
         ("vegetarian", "Vegetarian"),
         ("gluten-Free", "Gluten-free"),
@@ -301,6 +302,9 @@ class Application(models.Model):
     rsvp = models.BooleanField(null=True)
     created_at = models.DateTimeField(auto_now_add=True, null=False)
     updated_at = models.DateTimeField(auto_now=True, null=False)
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return f"{self.user.first_name} {self.user.last_name}"

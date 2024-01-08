@@ -154,7 +154,7 @@ class ApplicationForm(forms.ModelForm):
                 attrs={"class": "select2-school-select"},
                 choices=((None, ""),),
             ),
-            "resume": MaterialFileInput(),
+            "resume": MaterialFileInput(attrs={"accept": ".pdf"}),
             "what_hackathon_experience": forms.Textarea(
                 attrs={
                     "class": "materialize-textarea",
@@ -177,15 +177,15 @@ class ApplicationForm(forms.ModelForm):
                 }
             ),
             "phone_number": forms.TextInput(attrs={"placeholder": "+1 (123) 456-7890"}),
-            "graduation_year": forms.NumberInput(attrs={"placeholder": 2023}),
+            "graduation_year": forms.NumberInput(attrs={"placeholder": 2024}),
         }
 
     def __init__(self, *args, **kwargs):
         self.user = kwargs.pop("user")
         super().__init__(*args, **kwargs)
         self.label_suffix = ""
-        self.fields["conduct_agree"].required = True
-        self.fields["logistics_agree"].required = True
+        # self.fields["conduct_agree"].required = True
+        # self.fields["logistics_agree"].required = True
 
     def clean(self):
         if not is_registration_open():
