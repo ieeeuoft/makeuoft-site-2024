@@ -222,18 +222,17 @@ class Application(models.Model):
         null=False,
         help_text="If you’ve been to a hackathon, briefly tell "
         "us your experience. If not, describe what you"
-        " expect to see and experience. (1000 chars. "
-        "max)",
+        " expect to see and experience.",
         max_length=1000,
     )
     why_participate = models.TextField(
         null=False,
-        help_text="Why do you want to participate in MakeUofT? (1000 chars. max)",
+        help_text="Why do you want to participate in MakeUofT?",
         max_length=1000,
     )
     what_technical_experience = models.TextField(
         null=False,
-        help_text="What is your technical experience with software and hardware? (1000 chars. max)",
+        help_text="What is your technical experience with software and hardware?",
         max_length=1000,
     )
     discovery_method = models.TextField(
