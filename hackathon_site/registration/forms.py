@@ -158,7 +158,7 @@ class ApplicationForm(forms.ModelForm):
             "what_hackathon_experience": forms.Textarea(
                 attrs={
                     "class": "materialize-textarea",
-                    "placeholder": "My past experience is...",
+                    "placeholder": "My past experiences are...",
                     "data-length": 1000,
                 }
             ),
@@ -172,7 +172,7 @@ class ApplicationForm(forms.ModelForm):
             "what_technical_experience": forms.Textarea(
                 attrs={
                     "class": "materialize-textarea",
-                    "placeholder": "My technical experience with software are...",
+                    "placeholder": "My technical experience with software is...",
                     "data-length": 1000,
                 }
             ),
