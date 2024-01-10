@@ -1,7 +1,7 @@
 import React, { ReactElement } from "react";
 import { Box, Button, Divider, Grid, Link, Typography } from "@material-ui/core";
 import AlertBox from "components/general/AlertBox/AlertBox";
-import { hackathonName } from "constants.js";
+import { hackathonName, serverUrl } from "constants.js";
 
 export const UserAcceptanceMessage = ({
     status,
@@ -75,16 +75,9 @@ export const UserAcceptanceMessage = ({
             actionMessage: (
                 <Typography variant="h2" align="center">
                     Please finish your application{" "}
-                    <Link
-                        href={`${process.env.REACT_APP_DEV_SERVER_URL}/registration/application/`}
-                    >
-                        here
-                    </Link>{" "}
+                    <Link href={`${serverUrl}/registration/application/`}>here</Link>{" "}
                     and view your application status{" "}
-                    <Link href={`${process.env.REACT_APP_DEV_SERVER_URL}/dashboard/`}>
-                        here
-                    </Link>
-                    .
+                    <Link href={`${serverUrl}/dashboard/`}>here</Link>.
                 </Typography>
             ),
         },

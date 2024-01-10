@@ -1,4 +1,4 @@
-export const hackathonName = "MakeUofT";
+export const hackathonName = "MakeUofT 2024";
 export const adminGroup = "Hardware Site Admins";
 export const minTeamSize = 2;
 export const maxTeamSize = 4;
