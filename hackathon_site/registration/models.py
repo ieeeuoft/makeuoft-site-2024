@@ -38,33 +38,16 @@ class Application(models.Model):
         ("no-answer", "Prefer not to answer"),
     ]
 
-    ETHNICITY_CHOICES = [
+    PRONOUNS_CHOICES = [
         (None, ""),
-        ("american-native", "American Indian or Alaskan Native"),
-        ("asian-pacific-islander", "Asian / Pacific Islander"),
-        ("black-african-american", "Black or African American"),
-        ("hispanic", "Hispanic"),
-        ("caucasian", "White / Caucasian"),
-        ("other", "Multiple ethnicity / Other"),
-        ("no-answer", "Prefer not to answer"),
-    ]
-
-    STUDY_LEVEL_CHOICES = [
-        (None, ""),
-        ("highschool", "High School"),
-        ("undergraduate", "Undergraduate"),
-        ("gradschool", "Graduate School"),
+        ("she-her", "She/Her"),
+        ("he-him", "He/Him"),
+        ("they-them", "They/Them"),
+        ("she-they", "She/They"),
+        ("he-they", "He/They"),
+        ("no-answer", "Prefer not to Answer"),
         ("other", "Other"),
     ]
-
-    TSHIRT_SIZE_CHOICES = [
-        (None, ""),
-        ("S", "S"),
-        ("M", "M"),
-        ("L", "L"),
-        ("XL", "XL"),
-    ]
-
     HACKATHON_NUMBER_CHOICES = [
         (None, ""),
         ("0", "0"),
@@ -75,13 +58,98 @@ class Application(models.Model):
         ("5 or more", "5 or more"),
     ]
 
+    AGE_CHOICES = [
+        (None, ""),
+        ("18", "18"),
+        ("19", "19"),
+        ("20", "20"),
+        ("21", "21"),
+        ("22", "22"),
+        ("22+", "22+"),
+    ]
+
+    ETHNICITY_CHOICES = [
+        (None, ""),
+        ("asian-indian", "Asian Indian"),
+        ("black-african-american", "Black or African American"),
+        ("chinese", "Chinese"),
+        ("filipino", "Filipino"),
+        ("guamanian-chamorro", "Guamanian or Chamorro"),
+        ("hispanic-latino", "Hispanic/Latino/Spanish Origin"),
+        ("japanese", "Japanese"),
+        ("korean", "Korean"),
+        ("middle-eastern", "Middle Eastern"),
+        ("native-american", "Native American or Alaskan Native"),
+        ("native-hawaiian", "Native Hawaiian"),
+        ("samoan", "Samoan"),
+        ("vietnamese", "Vietnamese"),
+        ("caucasian", "White / Caucasian"),
+        ("other-asian", "Other Asian (Thai, Cambodian, etc)"),
+        ("other-pacific-islander", "Other Pacific Islander"),
+        ("other", "Other (Please Specify)"),
+        ("no-answer", "Prefer not to answer"),
+    ]
+
+    REFERRAL_CHOICES = [
+        (None, ""),
+        ("instagram", "Instagram"),
+        ("in class/from a professor", "In Class/From a professor"),
+        ("discord", "Discord"),
+        ("email", "Email"),
+        ("from a friend", "From a friend"),
+        ("other", "Other"),
+    ]
+
+    STUDY_LEVEL_CHOICES = [
+        (None, ""),
+        ("less-highschool", "Less than Secondary/High School"),
+        ("highschool", "Secondary/High School"),
+        (
+            "undergraduate-twoyears",
+            "Undergraduate University (2 year - community college or similar)",
+        ),
+        ("undergraduate-threeyears", "Undergraduate University (3+ year)"),
+        ("gradschool", "Graduate University (Masters, Professional, Doctoral, etc) "),
+        ("postdoctorate", "Post Doctorate"),
+        ("codeschool", "Code School/Bootcamp"),
+        ("other-apprenticeship", "Other Vocational / Trade Program or Apprenticeship"),
+        ("other", "Other (Please Specify)"),
+        ("not-student", "I'm not currently a student"),
+        ("no-answer", "Prefer not to answer"),
+    ]
+
+    TSHIRT_SIZE_CHOICES = [
+        (None, ""),
+        ("S", "S"),
+        ("M", "M"),
+        ("L", "L"),
+        ("XL", "XL"),
+    ]
+
+
     DIETARY_RESTRICTIONS_CHOICES = [
         (None, ""),
+        ("none", "None"),
         ("halal", "Halal"),
         ("vegetarian", "Vegetarian"),
         ("gluten-Free", "Gluten-free"),
         ("other but specify", "Other but Specify"),
-        ("none", "None"),
+    ]
+
+    YES_NO_UNSURE = [
+        (None, ""),
+        ("yes", "Yes"),
+        ("no", "No"),
+        ("unsure", "Unsure"),
+    ]
+
+    SEXUALITY = [
+        (None, ""),
+        ("straight", "Heterosexual or straight"),
+        ("gay-lesbian", "Gay or lesbian"),
+        ("bisexual", "Bisexual"),
+        ("different", "Different Identity (Please Specify"),
+        ("no-answer", "Prefer not to answer"),
     ]
 
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=False)
@@ -90,15 +158,19 @@ class Application(models.Model):
     )
 
     # User Submitted Fields
-    birthday = models.DateField(null=False)
+    age = models.CharField(max_length=50, choices=AGE_CHOICES, null=False)
     gender = models.CharField(max_length=50, choices=GENDER_CHOICES, null=False)
+    pronouns = models.CharField(max_length=50, choices=PRONOUNS_CHOICES, null=False)
     ethnicity = models.CharField(max_length=50, choices=ETHNICITY_CHOICES, null=False)
-    country = models.CharField(
-        max_length=255, null=True, blank=True, help_text="Country (Optional)"
+    country = models.CharField(max_length=255, null=False)
+    dietary_restrictions = models.CharField(
+        max_length=50, choices=DIETARY_RESTRICTIONS_CHOICES, null=False
     )
-    city = models.CharField(
-        max_length=255, null=True, blank=True, help_text="City (Optional)"
+    tshirt_size = models.CharField(
+        max_length=50, choices=TSHIRT_SIZE_CHOICES, null=False
     )
+
+    school = models.CharField(max_length=255, null=False)
     phone_number = models.CharField(
         max_length=20,
         null=False,
@@ -109,18 +181,13 @@ class Application(models.Model):
             )
         ],
     )
-    tshirt_size = models.CharField(
-        max_length=50, choices=TSHIRT_SIZE_CHOICES, null=False
-    )
-    dietary_restrictions = models.CharField(
-        max_length=50, choices=DIETARY_RESTRICTIONS_CHOICES, null=False
-    )
-    specific_dietary_requirement = models.CharField(max_length=50, blank=True)
-    school = models.CharField(max_length=255, null=False)
+
     study_level = models.CharField(
         max_length=50, choices=STUDY_LEVEL_CHOICES, null=False
     )
-    program = models.CharField(max_length=255, help_text="Program or Major", null=False)
+    program = models.CharField(
+        max_length=255, help_text="Program or Major", null=False, default=""
+    )
     graduation_year = models.IntegerField(
         null=False,
         validators=[
@@ -140,6 +207,15 @@ class Application(models.Model):
             )
         ],
         null=False,
+    )
+    linkedin = models.URLField(
+        max_length=200, help_text="LinkedIn Profile (Optional)", null=True, blank=True
+    )
+    github = models.URLField(
+        max_length=200, help_text="Github Profile (Optional)", null=True, blank=True
+    )
+    devpost = models.URLField(
+        max_length=200, help_text="Devpost Profile (Optional)", null=True, blank=True
     )
     how_many_hackathons = models.TextField(
         null=False,
@@ -164,15 +240,59 @@ class Application(models.Model):
         help_text="What is your technical experience with software and hardware?",
         max_length=1000,
     )
-    referral_source = models.TextField(
+    discovery_method = models.TextField(
         null=False,
-        help_text=f"How did you hear about {settings.HACKATHON_NAME}?",
+        help_text="How did you hear about MakeUofT?",
+        choices=REFERRAL_CHOICES,
+        max_length=100,
+    )
+
+    underrepresented_community = models.CharField(
+        null=False,
+        help_text="Do you identify as a part of an underrepresented group in the technology industry?",
+        choices=YES_NO_UNSURE,
         max_length=1000,
     )
-    resume_sharing = models.BooleanField(
-        help_text="I consent to IEEE UofT sharing my resume with event sponsors. (Optional)",
-        blank=True,
+
+    sexual_orientation = models.CharField(
         null=False,
+        help_text="Do you consider yourself to be any of the following?",
+        choices=SEXUALITY,
+        max_length=1000,
+    )
+
+    conduct_agree = models.BooleanField(
+        help_text="I have read and agree to the "
+        '<a href="https://static.mlh.io/docs/mlh-code-of-conduct.pdf" rel="noopener noreferrer" target="_blank">MLH code of conduct</a>.',
+        blank=False,
+        null=False,
+        default=False,
+    )
+    logistics_agree = models.BooleanField(
+        help_text="I authorize you to share my application/registration information with Major League Hacking"
+        " for event administration, ranking, and MLH administration in-line with the "
+        '<a href="https://mlh.io/privacy" rel="noopener noreferrer" target="_blank">MLH Privacy Policy</a>. '
+        "I further agree to the terms of both the "
+        '<a href="https://github.com/MLH/mlh-policies/blob/main/contest-terms.md" rel="noopener noreferrer" target="_blank">MLH Contest Terms and Conditions</a>'
+        " and the "
+        '<a href="https://mlh.io/privacy" rel="noopener noreferrer" target="_blank">MLH Privacy Policy.</a>',
+        blank=False,
+        null=False,
+        default=False,
+    )
+
+    email_agree = models.BooleanField(
+        help_text="I authorize MLH to send me pre- and post-event informational"
+        " emails, which contain free credit and opportunities from their partners.",
+        blank=True,
+        null=True,
+        default=False,
+    )
+
+    resume_sharing = models.BooleanField(
+        help_text="I consent to IEEE UofT sharing my resume with event sponsors.",
+        blank=True,
+        null=True,
         default=False,
     )
 
@@ -181,11 +301,6 @@ class Application(models.Model):
     updated_at = models.DateTimeField(auto_now=True, null=False)
 
     def save(self, *args, **kwargs):
-        if (
-            self.dietary_restrictions == "other but specify"
-            or self.dietary_restrictions == "Other but Specify"
-        ):
-            self.dietary_restrictions = self.specific_dietary_requirement
         super().save(*args, **kwargs)
 
     def __str__(self):

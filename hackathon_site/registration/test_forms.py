@@ -84,25 +84,25 @@ class ApplicationFormTestCase(SetupUserMixin, TestCase):
     def setUp(self):
         super().setUp()
         self.data = {
-            "birthday": date(2000, 1, 1),
-            "gender": "no-answer",
-            "ethnicity": "no-answer",
-            "city": "Toronto",
-            "country": "Canada",
+            "age": "18",
+            "pronouns": "he-him",
+            "gender": "male",
+            "ethnicity": "chinese",
             "phone_number": "1234567890",
-            "tshirt_size": "L",
+            "country": "canada",
             "dietary_restrictions": "halal",
-            "specific_dietary_requirement": "",
+            "tshirt_size": "L",
+            "underrepresented_community": "no",
+            "sexual_orientation": "straight",
             "school": "UofT",
-            "study_level": "other",
-            "program": "Engineering",
-            "graduation_year": 2023,
-            "how_many_hackathons": 4,
-            "what_hackathon_experience": "there",
+            "study_level": "gradschool",
+            "graduation_year": "2025",
+            "program": "computer science",
+            "how_many_hackathons": "2",
+            "what_hackathon_experience": "foo",
             "why_participate": "foo",
-            "what_technical_experience": "loo",
-            "referral_source": "my friend",
-            "resume_sharing": True,
+            "what_technical_experience": "foo",
+            "discovery_method": "instagram",
         }
         self.files = self._build_files()
 
@@ -133,12 +133,14 @@ class ApplicationFormTestCase(SetupUserMixin, TestCase):
 
     def test_fields_are_required(self):
         optional_fields = {
-            "country",
-            "city",
+            "linkedin",
+            "github",
+            "devpost",
+            "email_agree",
             "resume_sharing",
             "rsvp",
-            "dietary_restrictions",
-            "specific_dietary_requirement",
+            "conduct_agree",
+            "logistics_agree",
         }
         for field in self.data:
             if field in optional_fields:
@@ -274,26 +276,6 @@ class ApplicationFormTestCase(SetupUserMixin, TestCase):
         form = self._build_form()
         self.assertFalse(form.is_valid())
         self.assertIn("Registration has closed.", form.non_field_errors())
-
-    def test_invalid_birthday(self):
-        data = self.data.copy()
-        data["birthday"] = (
-            settings.EVENT_START_DATE
-            - relativedelta(years=settings.MINIMUM_AGE - 1, days=360)
-        ).date()
-        form = self._build_form(data=data)
-        self.assertFalse(form.is_valid())
-        self.assertIn(
-            f"You must be {settings.MINIMUM_AGE} to participate.",
-            form.errors["birthday"],
-        )
-
-        data["birthday"] = (
-            settings.EVENT_START_DATE
-            - relativedelta(years=settings.MINIMUM_AGE, days=1)
-        ).date()
-        form = self._build_form(data=data)
-        self.assertTrue(form.is_valid())
 
 
 class JoinTeamFormTestCase(SetupUserMixin, TestCase):
