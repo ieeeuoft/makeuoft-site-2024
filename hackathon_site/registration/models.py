@@ -125,7 +125,6 @@ class Application(models.Model):
         ("XL", "XL"),
     ]
 
-
     DIETARY_RESTRICTIONS_CHOICES = [
         (None, ""),
         ("none", "None"),
