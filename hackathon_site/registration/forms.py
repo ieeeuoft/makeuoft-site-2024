@@ -125,7 +125,6 @@ class ApplicationForm(forms.ModelForm):
             "pronouns",
             "gender",
             "ethnicity",
-            "city",
             "country",
             "phone_number",
             "country",
@@ -135,7 +134,6 @@ class ApplicationForm(forms.ModelForm):
             "sexual_orientation",
             "school",
             "study_level",
-            "program",
             "graduation_year",
             "program",
             "resume",
@@ -180,10 +178,6 @@ class ApplicationForm(forms.ModelForm):
                     "data-length": 1000,
                 }
             ),
-            "referral_source": forms.Textarea(
-                attrs={"class": "materialize-textarea", "data-length": 1000,}
-            ),
-            "resume": MaterialFileInput(attrs={"accept": ".pdf"}),
             "phone_number": forms.TextInput(attrs={"placeholder": "+1 (123) 456-7890"}),
             "graduation_year": forms.NumberInput(attrs={"placeholder": 2024}),
         }

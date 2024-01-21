@@ -52,11 +52,7 @@ class SetupUserMixin:
             "age": "18",
             "gender": "no-answer",
             "ethnicity": "no-answer",
-            "city": "Toronto",
-            "country": "Canada",
             "phone_number": "1234567890",
-            "tshirt_size": "L",
-            "dietary_restrictions": "Halal",
             "school": "UofT",
             "study_level": "other",
             "graduation_year": 2020,
@@ -68,7 +64,6 @@ class SetupUserMixin:
             "email_agree": True,
             "resume_sharing": True,
             "resume": "uploads/resumes/my_resume.pdf",
-            "resume_sharing": True,
             **kwargs,
         }
         return Application.objects.create(user=user, team=team, **application_data)

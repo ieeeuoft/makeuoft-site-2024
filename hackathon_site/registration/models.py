@@ -3,7 +3,6 @@ from django.core import validators
 from django.contrib.auth import get_user_model
 import uuid
 
-from hackathon_site import settings
 from registration.validators import UploadedFileValidator
 
 User = get_user_model()

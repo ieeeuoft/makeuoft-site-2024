@@ -236,7 +236,6 @@ class QRScannerView(LoginRequiredMixin, FormView):
                 sign_in_event = get_curr_sign_in_time(False, True)
                 now = datetime.now().replace(tzinfo=settings.TZ_INFO)
                 application = Application.objects.get(user__exact=user)
-                print("info", pprint(vars(application)))
 
                 try:
                     user_activity = UserActivity.objects.get(user__exact=user)
@@ -254,26 +253,15 @@ class QRScannerView(LoginRequiredMixin, FormView):
                     sign_in_obj[sign_in_event] = now
                     UserActivity.objects.create(user=user, **sign_in_obj)
 
-                # Rerutn the information need, and each information will start on a new line
+                # Return the information need, and each information will start on a new line
 
-                if application.specific_dietary_requirement != "":
-                    return_string = (
-                        (user.first_name).capitalize()
-                        + " successfully signed in.  👕T-shirt: "
-                        + application.tshirt_size
-                        + " 🍉 Dietary Restrictions: "
-                        + application.dietary_restrictions
-                        + " ⭐️Special Diet Requirement:"
-                        + application.specific_dietary_requirement
-                    )
-                else:
-                    return_string = (
-                        (user.first_name).capitalize()
-                        + " successfully signed in.  👕T-shirt: "
-                        + application.tshirt_size
-                        + " 🍉 Dietary Restrictions: "
-                        + application.dietary_restrictions
-                    )
+                return_string = (
+                    (user.first_name).capitalize()
+                    + " successfully signed in.  👕T-shirt: "
+                    + application.tshirt_size
+                    + " 🍉 Dietary Restrictions: "
+                    + application.dietary_restrictions
+                )
 
                 messages.success(self.request, return_string)
             except NoEventOccurringException as e:
