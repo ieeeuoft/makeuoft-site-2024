@@ -179,6 +179,7 @@ class Application(models.Model):
             )
         ],
     )
+
     study_level = models.CharField(
         max_length=50, choices=STUDY_LEVEL_CHOICES, null=False
     )

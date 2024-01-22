@@ -115,6 +115,7 @@ class ApplicationInline(admin.TabularInline):
         "data_agree",
     )
     readonly_fields = (
+        "tshirt_size",
         "get_user_full_name",
         "study_level",
         "school",
