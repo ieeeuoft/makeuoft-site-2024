@@ -322,8 +322,8 @@ REGISTRATION_OPEN_DATE = datetime(2024, 1, 9, tzinfo=TZ_INFO)
 REGISTRATION_CLOSE_DATE = datetime(2024, 2, 4, tzinfo=TZ_INFO)
 EVENT_START_DATE = datetime(2024, 2, 17, 10, 0, 0, tzinfo=TZ_INFO)
 EVENT_END_DATE = datetime(2024, 2, 18, 17, 0, 0, tzinfo=TZ_INFO)
-HARDWARE_SIGN_OUT_START_DATE = datetime(2024, 2, 1, tzinfo=TZ_INFO)
-HARDWARE_SIGN_OUT_END_DATE = datetime(2024, 2, 18, tzinfo=TZ_INFO)
+HARDWARE_SIGN_OUT_START_DATE = datetime(2024, 2, 12, 11, 59, tzinfo=TZ_INFO)
+HARDWARE_SIGN_OUT_END_DATE = datetime(2024, 2, 16, 17, 0, tzinfo=TZ_INFO)
 
 # Registration user requirements
 MINIMUM_AGE = 18
@@ -349,7 +349,7 @@ PARTICIPANT_PACKAGE_LINK = "https://docs.google.com/document/d/1-k_s9RqdQ0stg8b4
 
 # Note this is in the form (chat_room_name, chat_room_link)
 # Chat room name is such as the following: Slack, Discord
-CHAT_ROOM = ("Slack", "https://slack.com")
+CHAT_ROOM = ("Discord", "https://slack.com") #TODO: add discord server invite
 
 # Enable/Disable certain Features
 TEAMS = True
