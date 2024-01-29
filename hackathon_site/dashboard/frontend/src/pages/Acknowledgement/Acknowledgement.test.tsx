@@ -18,7 +18,7 @@ import { Profile, UserWithReviewStatus } from "api/types";
 import { get, post } from "api/api";
 import rootStore, { makeStore, RootState } from "slices/store";
 import { initialState, userReducerName } from "slices/users/userSlice";
-import { fireEvent } from "@testing-library/react";
+import { fireEvent, queryByTestId } from "@testing-library/react";
 import { acknowledgementCheckboxes } from "components/acknowledgement/AcknowledgementForm/AcknowledgementForm";
 
 jest.mock("api/api", () => ({
@@ -215,12 +215,11 @@ describe("<Acknowledgement />", () => {
                 createProfileAPI,
                 createProfileRequest
             );
-            // FIXME: correct the test below later
-            // expect(
-            //     getByText(
-            //         new RegExp(`${mockUserWithoutProfile.first_name}, you're ready to get started. We've placed you in Team ${createProfileAPIResponse.data.team} but you can leave and join another team anytime.`, 'i')
-            //     )
-            // ).toBeInTheDocument();
+            expect(
+                getByText(
+                    `${mockUserWithoutProfile.first_name}, you're ready to get started. We've placed you in Team ${createProfileAPIResponse.data.team} but you can leave and join another team anytime.`
+                )
+            ).toBeInTheDocument();
             fireEvent.click(getByText("Let's Go!"));
         });
     });
