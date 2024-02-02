@@ -278,6 +278,7 @@ export const mockTeam: Team = {
             },
         },
     ],
+    project_description: "",
 };
 
 export const mockTeamMultiple = {
@@ -343,6 +344,7 @@ export const mockTeamMultiple = {
             },
         },
     ],
+    project_description: "",
 };
 
 // Valid Team Size
@@ -461,6 +463,7 @@ export const mockLargeTeam: Team = {
             },
         },
     ],
+    project_description: "",
 };
 
 export const mockHardware: Hardware[] = [
