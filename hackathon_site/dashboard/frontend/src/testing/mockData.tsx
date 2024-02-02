@@ -383,6 +383,7 @@ export const mockValidTeam: Team = {
             },
         },
     ],
+    project_description: "",
 };
 
 // Team with too many members
