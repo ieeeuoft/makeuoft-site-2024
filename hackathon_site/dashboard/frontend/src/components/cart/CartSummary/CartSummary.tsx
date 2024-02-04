@@ -14,7 +14,6 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import { teamSizeSelector } from "slices/event/teamSlice";
 import { isTestUserSelector } from "slices/users/userSlice";
 import { projectDescriptionSelector } from "slices/event/teamDetailSlice";
-import { displaySnackbar } from "slices/ui/uiSlice";
 import {
     hardwareSignOutEndDate,
     hardwareSignOutStartDate,
