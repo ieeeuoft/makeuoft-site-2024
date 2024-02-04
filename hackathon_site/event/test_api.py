@@ -841,6 +841,7 @@ class TeamIncidentListViewPostTestCase(SetupUserMixin, APITestCase):
         for attribute in similar_attributes:
             self.assertEqual(final_response[attribute], self.request_data[attribute])
 
+
 # TODO: fix failing test cases
 # class EventTeamDetailViewTestCase(SetupUserMixin, APITestCase):
 #     def setUp(self, **kwargs):
