@@ -322,8 +322,8 @@ REGISTRATION_OPEN_DATE = datetime(2024, 1, 9, tzinfo=TZ_INFO)
 REGISTRATION_CLOSE_DATE = datetime(2024, 2, 4, tzinfo=TZ_INFO)
 EVENT_START_DATE = datetime(2024, 2, 17, 10, 0, 0, tzinfo=TZ_INFO)
 EVENT_END_DATE = datetime(2024, 2, 18, 17, 0, 0, tzinfo=TZ_INFO)
-HARDWARE_SIGN_OUT_START_DATE = datetime(2024, 2, 1, tzinfo=TZ_INFO)
-HARDWARE_SIGN_OUT_END_DATE = datetime(2024, 2, 18, tzinfo=TZ_INFO)
+HARDWARE_SIGN_OUT_START_DATE = datetime(2024, 2, 12, 11, 59, tzinfo=TZ_INFO)
+HARDWARE_SIGN_OUT_END_DATE = datetime(2024, 2, 16, 17, 0, tzinfo=TZ_INFO)
 
 # Registration user requirements
 MINIMUM_AGE = 18
@@ -345,11 +345,11 @@ WAITLISTED_ACCEPTANCE_START_TIME = EVENT_START_DATE + timedelta(hours=1)
 FINAL_REVIEW_RESPONSE_DATE = REGISTRATION_CLOSE_DATE + timedelta(days=7)
 
 # Links
-PARTICIPANT_PACKAGE_LINK = "#"
+PARTICIPANT_PACKAGE_LINK = "https://docs.google.com/document/d/1-k_s9RqdQ0stg8b4jXDy9jqXPZjsOI8QLvw2o6XxeHk/edit?usp=sharing"
 
 # Note this is in the form (chat_room_name, chat_room_link)
 # Chat room name is such as the following: Slack, Discord
-CHAT_ROOM = ("Slack", "https://slack.com")
+CHAT_ROOM = ("Discord", "https://discord.gg/dNRs3p2Ab9")
 
 # Enable/Disable certain Features
 TEAMS = True
