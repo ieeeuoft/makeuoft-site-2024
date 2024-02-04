@@ -349,7 +349,7 @@ PARTICIPANT_PACKAGE_LINK = "https://docs.google.com/document/d/1-k_s9RqdQ0stg8b4
 
 # Note this is in the form (chat_room_name, chat_room_link)
 # Chat room name is such as the following: Slack, Discord
-CHAT_ROOM = ("Discord", "https://slack.com")  # TODO: add discord server invite
+CHAT_ROOM = ("Discord", "https://discord.gg/dNRs3p2Ab9")
 
 # Enable/Disable certain Features
 TEAMS = True
