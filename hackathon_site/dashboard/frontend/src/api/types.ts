@@ -102,7 +102,10 @@ export type OrderStatus =
     | "Ready for Pickup"
     | "Picked Up"
     | "Cancelled"
-    | "Returned";
+    | "Returned"
+    | "Pending"
+    | "In Progress";
+
 export type PartReturnedHealth =
     | "Healthy"
     | "Heavily Used"
