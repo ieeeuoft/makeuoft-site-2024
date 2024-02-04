@@ -33,21 +33,7 @@ const CartSummary = () => {
     const dispatch = useDispatch();
     const onSubmit = () => {
         if (cartQuantity > 0) {
-            if (
-                projectDescription &&
-                projectDescription.length < minProjectDescriptionLength
-            ) {
-                dispatch(
-                    displaySnackbar({
-                        message: "Please provide a more detailed project description.",
-                        options: {
-                            variant: "error",
-                        },
-                    })
-                );
-            } else {
-                dispatch(submitOrder());
-            }
+            dispatch(submitOrder());
         }
     };
     const currentDateTime = new Date();
@@ -75,6 +61,9 @@ const CartSummary = () => {
                     cartQuantity === 0 ||
                     cartOrderLoading ||
                     !teamSizeValid ||
+                    !projectDescription ||
+                    (projectDescription &&
+                        projectDescription.length < minProjectDescriptionLength) ||
                     (!isTestUser && isOutsideSignOutPeriod)
                 }
                 onClick={onSubmit}
