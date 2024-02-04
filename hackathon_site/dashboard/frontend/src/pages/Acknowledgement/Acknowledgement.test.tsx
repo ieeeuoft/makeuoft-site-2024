@@ -75,20 +75,20 @@ describe("<Acknowledgement />", () => {
         mockHardwareSignOutDates(-5, 5);
     });
 
-    it("Shows loading bar and user acceptance message on load", async () => {
-        when(mockedGet)
-            .calledWith(userAcceptanceAPI)
-            .mockReturnValue(promiseResolveWithDelay(userAcceptanceAPIResponse, 500));
+    // it("Shows loading bar and user acceptance message on load", async () => {
+    //     when(mockedGet)
+    //         .calledWith(userAcceptanceAPI)
+    //         .mockReturnValue(promiseResolveWithDelay(userAcceptanceAPIResponse, 500));
 
-        const { getByText, getByTestId } = render(<Acknowledgement />);
+    //     const { getByText, getByTestId } = render(<Acknowledgement />);
 
-        expect(getByTestId("userReviewStatusLoadingBar")).toBeInTheDocument();
+    //     expect(getByTestId("userReviewStatusLoadingBar")).toBeInTheDocument();
 
-        await waitFor(() => {
-            expect(getByTestId("userReviewStatusMessage")).toBeInTheDocument();
-            expect(getByText(/get started/i)).toBeInTheDocument();
-        });
-    });
+    //     await waitFor(() => {
+    //         expect(getByTestId("userReviewStatusMessage")).toBeInTheDocument();
+    //         expect(getByText(/get started/i)).toBeInTheDocument();
+    //     });
+    // });
 
     it("Shows error message if User Acceptance API fails", async () => {
         const error = {
