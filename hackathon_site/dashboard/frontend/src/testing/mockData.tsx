@@ -278,6 +278,7 @@ export const mockTeam: Team = {
             },
         },
     ],
+    project_description: "",
 };
 
 export const mockTeamMultiple = {
@@ -343,6 +344,7 @@ export const mockTeamMultiple = {
             },
         },
     ],
+    project_description: "",
 };
 
 // Valid Team Size
@@ -381,6 +383,7 @@ export const mockValidTeam: Team = {
             },
         },
     ],
+    project_description: "",
 };
 
 // Team with too many members
@@ -461,6 +464,7 @@ export const mockLargeTeam: Team = {
             },
         },
     ],
+    project_description: "",
 };
 
 export const mockHardware: Hardware[] = [
@@ -850,6 +854,7 @@ export const mockPendingOrdersInTable: OrderInTable[] = [
                 id: 10,
                 quantityRequested: 2,
                 quantityGranted: 1,
+                quantityGrantedBySystem: 1,
             },
         ],
         status: "Ready for Pickup",
@@ -863,11 +868,13 @@ export const mockPendingOrdersInTable: OrderInTable[] = [
                 id: 1,
                 quantityRequested: 2,
                 quantityGranted: 2,
+                quantityGrantedBySystem: 2,
             },
             {
                 id: 4,
                 quantityRequested: 1,
                 quantityGranted: 1,
+                quantityGrantedBySystem: 1,
             },
         ],
         status: "Submitted",
@@ -881,11 +888,13 @@ export const mockPendingOrdersInTable: OrderInTable[] = [
                 id: 3,
                 quantityRequested: 1,
                 quantityGranted: 1,
+                quantityGrantedBySystem: 1,
             },
             {
                 id: 4,
                 quantityRequested: 1,
                 quantityGranted: 1,
+                quantityGrantedBySystem: 1,
             },
         ],
         status: "Ready for Pickup",
@@ -902,6 +911,7 @@ export const mockCheckedOutOrdersInTable: OrderInTable[] = [
                 id: 10,
                 quantityRequested: 3,
                 quantityGranted: 2,
+                quantityGrantedBySystem: 2,
             },
         ],
         status: "Picked Up",
@@ -915,11 +925,13 @@ export const mockCheckedOutOrdersInTable: OrderInTable[] = [
                 id: 1,
                 quantityRequested: 2,
                 quantityGranted: 1,
+                quantityGrantedBySystem: 1,
             },
             {
                 id: 2,
                 quantityRequested: 1,
                 quantityGranted: 1,
+                quantityGrantedBySystem: 1,
             },
         ],
         status: "Picked Up",
@@ -933,6 +945,7 @@ export const mockCheckedOutOrdersInTable: OrderInTable[] = [
                 id: 1,
                 quantityRequested: 2,
                 quantityGranted: 2,
+                quantityGrantedBySystem: 2,
             },
         ],
         status: "Picked Up",

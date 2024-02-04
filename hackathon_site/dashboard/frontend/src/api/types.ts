@@ -90,6 +90,7 @@ export interface Team {
     created_at: string;
     updated_at: string;
     profiles: ProfileWithUser[];
+    project_description: string;
 }
 
 export interface ProfileWithUser extends ProfileWithoutTeamNumber {
@@ -102,8 +103,16 @@ export type OrderStatus =
     | "Ready for Pickup"
     | "Picked Up"
     | "Cancelled"
-    | "Returned";
-export type PartReturnedHealth = "Healthy" | "Heavily Used" | "Broken" | "Lost";
+    | "Returned"
+    | "Pending"
+    | "In Progress";
+
+export type PartReturnedHealth =
+    | "Healthy"
+    | "Heavily Used"
+    | "Broken"
+    | "Lost"
+    | "Rejected";
 
 export type ItemsInOrder = Omit<OrderItem, "order" | "time_occurred">;
 
@@ -127,6 +136,7 @@ export interface OrderFilters {
     ordering?: OrderOrdering;
     status?: OrderStatus[];
     search?: string;
+    limit?: number;
 }
 
 /** Sanitized Orders */
@@ -134,6 +144,7 @@ export interface OrderItemTableRow {
     id: number;
     quantityRequested: number;
     quantityGranted: number;
+    quantityGrantedBySystem: number;
 }
 
 export interface OrderInTable {

@@ -43,9 +43,9 @@ describe("Admin Dashboard Page", () => {
 
     // test("Renders correctly when the dashboard appears with Title texts", async () => {
     //     const { getByText } = render(<AdminDashboard />);
-    //
+
     //     await waitFor(() => {
-    //         expect(getByText("MakeUofT Admin Dashboard")).toBeInTheDocument();
+    //         expect(getByText("Hackathon Name Admin Dashboard")).toBeInTheDocument();
     //         expect(getByText("Overview")).toBeInTheDocument();
     //         expect(getByText("Pending Orders")).toBeInTheDocument();
     //     });
