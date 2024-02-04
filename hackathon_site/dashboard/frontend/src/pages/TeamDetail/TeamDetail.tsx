@@ -27,6 +27,7 @@ import { getHardwareWithFilters, setFilters } from "slices/hardware/hardwareSlic
 import { getCategories } from "slices/hardware/categorySlice";
 import ProductOverview from "components/inventory/ProductOverview/ProductOverview";
 import TeamPendingOrderTable from "components/teamDetail/TeamPendingOrderTable/TeamPendingOrderTable";
+import ProjectDescriptionDetail from "components/teamDetail/ProjectDescription/ProjectDescriptionDetail";
 
 export interface PageParams {
     code: string;
@@ -90,6 +91,7 @@ const TeamDetail = ({ match }: RouteComponentProps<PageParams>) => {
                         ) : (
                             <>
                                 {/*<SimplePendingOrderFulfillmentTable />*/}
+                                <ProjectDescriptionDetail />
                                 <TeamPendingOrderTable />
                                 <Divider className={styles.dividerMargin} />
                                 <TeamCheckedOutOrderTable />

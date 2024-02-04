@@ -13,11 +13,14 @@ import {
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { teamSizeSelector } from "slices/event/teamSlice";
 import { isTestUserSelector } from "slices/users/userSlice";
+import { projectDescriptionSelector } from "slices/event/teamDetailSlice";
+import { displaySnackbar } from "slices/ui/uiSlice";
 import {
     hardwareSignOutEndDate,
     hardwareSignOutStartDate,
     maxTeamSize,
     minTeamSize,
+    minProjectDescriptionLength,
 } from "constants.js";
 
 const CartSummary = () => {
@@ -25,6 +28,7 @@ const CartSummary = () => {
     const cartQuantity = useSelector(cartTotalSelector);
     const cartOrderLoading = useSelector(isLoadingSelector);
     const teamSize = useSelector(teamSizeSelector);
+    const projectDescription = useSelector(projectDescriptionSelector);
     const teamSizeValid = teamSize >= minTeamSize && teamSize <= maxTeamSize;
     const dispatch = useDispatch();
     const onSubmit = () => {
@@ -57,6 +61,8 @@ const CartSummary = () => {
                     cartQuantity === 0 ||
                     cartOrderLoading ||
                     !teamSizeValid ||
+                    (projectDescription &&
+                        projectDescription.length < minProjectDescriptionLength) ||
                     (!isTestUser && isOutsideSignOutPeriod)
                 }
                 onClick={onSubmit}
