@@ -345,7 +345,7 @@ WAITLISTED_ACCEPTANCE_START_TIME = EVENT_START_DATE + timedelta(hours=1)
 FINAL_REVIEW_RESPONSE_DATE = REGISTRATION_CLOSE_DATE + timedelta(days=7)
 
 # Links
-PARTICIPANT_PACKAGE_LINK = "https://docs.google.com/document/d/1-k_s9RqdQ0stg8b4jXDy9jqXPZjsOI8QLvw2o6XxeHk/edit?usp=sharing"
+PARTICIPANT_PACKAGE_LINK = "https://docs.google.com/document/d/1xJAJTbcQyDCvjJ69JtLThClbwiou8azEMH7QqEFCqLo/edit?usp=sharing"
 
 # Note this is in the form (chat_room_name, chat_room_link)
 # Chat room name is such as the following: Slack, Discord
