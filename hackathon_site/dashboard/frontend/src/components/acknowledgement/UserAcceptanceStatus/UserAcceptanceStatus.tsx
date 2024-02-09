@@ -7,7 +7,7 @@ export const UserAcceptanceMessage = ({
     status,
     handleGetStarted,
 }: {
-    status: "Accepted" | "Waitlisted" | "Rejected" | "Incomplete" | "NotStarted";
+    status: "Accepted" | "Waitlisted" | "Rejected" | "Incomplete";
     handleGetStarted(): any;
 }) => {
     const ACCEPTANCE_MESSAGES: {
@@ -77,30 +77,18 @@ export const UserAcceptanceMessage = ({
                 </Typography>
             ),
         },
-        NotStarted: {
-            title: `Hardware Signout Site is not open yet`,
-            alertColor: "info",
-            actionMessage: (
-                <Typography variant="h2" align="center">
-                    Please wait for further notice from us, See you soon! <br />
-                    <br />
-                    View your application status{" "}
-                    <Link href={`${serverUrl}/dashboard/`}>here</Link>.
-                </Typography>
-            ),
-        },
     });
     return (
         <div data-testid="userReviewStatusMessage">
             <Typography variant="h1">{ACCEPTANCE_MESSAGES[status].title}</Typography>
             <Grid container justifyContent="center">
                 <Grid item lg={4} md={4} sm={6} xs={12}>
-                    {status !== "NotStarted" && (
+                    {
                         <AlertBox
                             title={`Acceptance Status: ${status}`}
                             type={ACCEPTANCE_MESSAGES[status].alertColor}
                         />
-                    )}
+                    }
                 </Grid>
             </Grid>
             <Divider style={{ margin: "20px 0px" }} />
