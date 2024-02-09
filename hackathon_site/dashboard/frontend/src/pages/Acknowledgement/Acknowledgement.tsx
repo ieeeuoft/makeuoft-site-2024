@@ -49,10 +49,11 @@ const Acknowledgement = () => {
 
     useEffect(() => {
         const today = new Date();
-        if (hardwareSignOutStartDate > today) {
-            setSignoutNotStarted(true);
-            push("/404");
-        } else if (userDoesNotHaveRole) {
+        // if (hardwareSignOutStartDate > today) {
+        //     setSignoutNotStarted(true);
+        //     push("/404");
+        // } else
+        if (userDoesNotHaveRole) {
             setSignoutNotStarted(false);
             dispatch(fetchUserAcceptanceStatus());
         }
@@ -76,8 +77,6 @@ const Acknowledgement = () => {
                             status={
                                 isTestUser
                                     ? "Accepted"
-                                    : signoutNotStarted
-                                    ? "NotStarted"
                                     : acceptanceUser?.review_status === "None" ||
                                       !acceptanceUser?.review_status
                                     ? "Incomplete"
