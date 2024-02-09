@@ -26,8 +26,6 @@ import {
     UserHasBeenGrantedAccessMessage,
 } from "components/acknowledgement/UserAcceptanceStatus/UserAcceptanceStatus";
 import AlertBox from "components/general/AlertBox/AlertBox";
-import { hardwareSignOutStartDate } from "constants.js";
-import { push } from "connected-react-router";
 
 const Acknowledgement = () => {
     const dispatch = useDispatch();
@@ -45,16 +43,13 @@ const Acknowledgement = () => {
     } = useSelector(createProfileSelector);
     const userDoesNotHaveRole = userType === "none";
     const [showAcknowledgements, setShowAcknowledgements] = useState(false);
-    const [signoutNotStarted, setSignoutNotStarted] = useState(false);
 
     useEffect(() => {
-        const today = new Date();
         // if (hardwareSignOutStartDate > today) {
         //     setSignoutNotStarted(true);
         //     push("/404");
         // } else
         if (userDoesNotHaveRole) {
-            setSignoutNotStarted(false);
             dispatch(fetchUserAcceptanceStatus());
         }
     }, [dispatch, userDoesNotHaveRole]);
