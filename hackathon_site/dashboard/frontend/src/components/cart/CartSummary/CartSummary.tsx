@@ -60,6 +60,7 @@ const CartSummary = () => {
                     cartQuantity === 0 ||
                     cartOrderLoading ||
                     !teamSizeValid ||
+                    !projectDescription || // Checks if projectDescription is null, undefined, or an empty string
                     (projectDescription &&
                         projectDescription.length < minProjectDescriptionLength) ||
                     (!isTestUser && isOutsideSignOutPeriod)
