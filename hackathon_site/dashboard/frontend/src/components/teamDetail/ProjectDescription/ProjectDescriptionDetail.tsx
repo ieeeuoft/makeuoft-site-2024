@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { isTeamInfoLoadingSelector } from "slices/event/teamDetailSlice";
-import { projectDescriptionSelector } from "slices/event/teamSlice";
+import { projectDescriptionSelector } from "slices/event/teamDetailSlice";
 import styles from "./ProjectDescription.module.scss";
 import { LinearProgress, Paper, Typography } from "@material-ui/core";
 
