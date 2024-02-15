@@ -13,7 +13,7 @@ import {
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { teamSizeSelector } from "slices/event/teamSlice";
 import { isTestUserSelector } from "slices/users/userSlice";
-import { projectDescriptionSelector } from "slices/event/teamDetailSlice";
+import { projectDescriptionSelector } from "slices/event/teamSlice";
 import {
     hardwareSignOutEndDate,
     hardwareSignOutStartDate,
