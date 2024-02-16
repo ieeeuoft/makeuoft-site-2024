@@ -7,14 +7,14 @@
 <table>
     <thead>
         <tr>
-            <th>Item Name</th>
+            <th>Item ID</th>
             <th>Quantity Requested</th>
         </tr>
     </thead>
     <tbody>
         {% for item in order.hardware %}
             <tr>
-                <td> {{ item.name }} </td>
+                <td> {{ item.hardware_id }} </td>
                 <td> {{ item.quantity_fulfilled }} </td>
             </tr>
         {% endfor %}
