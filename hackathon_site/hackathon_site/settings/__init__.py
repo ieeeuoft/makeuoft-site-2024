@@ -320,7 +320,7 @@ HSS_ADMIN_EMAIL = "hardware@makeuoft.ca"
 
 REGISTRATION_OPEN_DATE = datetime(2024, 1, 9, tzinfo=TZ_INFO)
 REGISTRATION_CLOSE_DATE = datetime(2024, 2, 4, tzinfo=TZ_INFO)
-EVENT_START_DATE = datetime(2024, 2, 17, 10, 0, 0, tzinfo=TZ_INFO)
+EVENT_START_DATE = datetime(2024, 2, 17, 8, 0, 0, tzinfo=TZ_INFO)
 EVENT_END_DATE = datetime(2024, 2, 18, 17, 0, 0, tzinfo=TZ_INFO)
 HARDWARE_SIGN_OUT_START_DATE = datetime(2024, 2, 12, 11, 59, tzinfo=TZ_INFO)
 HARDWARE_SIGN_OUT_END_DATE = datetime(2024, 2, 16, 17, 0, tzinfo=TZ_INFO)
@@ -364,7 +364,7 @@ SIGN_IN_TIMES = [
     {
         "name": "sign_in",
         "description": "Hackathon Sign In",
-        "time": datetime(2024, 2, 17, 8, 30, 0, tzinfo=TZ_INFO),  # Feb 17th @ 8:30am
+        "time": datetime(2024, 2, 17, 9, 0, 0, tzinfo=TZ_INFO),  # Feb 17th @ 8:30am
     },
     {
         "name": "lunch1",
