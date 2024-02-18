@@ -322,8 +322,8 @@ REGISTRATION_OPEN_DATE = datetime(2024, 1, 9, tzinfo=TZ_INFO)
 REGISTRATION_CLOSE_DATE = datetime(2024, 2, 4, tzinfo=TZ_INFO)
 EVENT_START_DATE = datetime(2024, 2, 17, 8, 0, 0, tzinfo=TZ_INFO)
 EVENT_END_DATE = datetime(2024, 2, 18, 17, 0, 0, tzinfo=TZ_INFO)
-HARDWARE_SIGN_OUT_START_DATE = datetime(2024, 2, 12, 11, 59, tzinfo=TZ_INFO)
-HARDWARE_SIGN_OUT_END_DATE = datetime(2024, 2, 17, 21, 30, tzinfo=TZ_INFO)
+HARDWARE_SIGN_OUT_START_DATE = datetime(2024, 2, 18, 6, 30, tzinfo=TZ_INFO)
+HARDWARE_SIGN_OUT_END_DATE = datetime(2024, 2, 18, 11, 0, tzinfo=TZ_INFO)
 
 # Registration user requirements
 MINIMUM_AGE = 18
