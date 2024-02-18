@@ -384,6 +384,6 @@ SIGN_IN_TIMES = [
     {
         "name": "lunch2",
         "description": "Lunch Day 2",
-        "time": datetime(2024, 2, 18, 13, 0, 0, tzinfo=TZ_INFO),  # Feb 18th @ 1pm
+        "time": datetime(2024, 2, 18, 12, 0, 0, tzinfo=TZ_INFO),  # Feb 18th @ 1pm
     },
 ]
